@@ -1,0 +1,68 @@
+body {
+	box-sizing: border-box;
+}
+
+.header {
+	display:flex;
+	justify-content:space-between;
+	
+}
+
+.leftheader {
+	display:flex;
+
+}
+
+.searchsection {
+	display:flex;
+}
+
+.rightheader {
+	display:flex;
+}
+
+
+.videoplayer {
+	background-color:grey;
+	width:640px;
+	height:360px;
+}
+
+
+.recthumbnail {
+	width:168px;
+	height:94px;
+	background-color:grey;
+}
+
+
+.recommendationsection {
+	display:flex;
+	flex-direction:column;
+	width:300px;
+	outline:solid red 2px;
+	
+}
+
+
+.recvideo {
+	display:flex;
+	max-height:94px;
+}
+
+.recuploaddate {
+	min-width:0;
+	text-overflow:ellipsis;
+}
+.header {
+
+}
+.header {
+
+}
+.header {
+
+}
+.header {
+
+}
