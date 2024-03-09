@@ -38,44 +38,14 @@ button {
 }
 
 
-.videoplayer {
-	background-color:grey;
-	width:640px;
-	height:360px;
-}
 
-
-.recthumbnail {
-	width:168px;
-	height:94px;
-	background-color:grey;
-}
-
-
-.recommendationsection {
-	display:flex;
-	flex-direction:column;
-	width:300px;
-	outline:solid red 2px;
-	
-}
-
-
-.recvideo {
-	display:flex;
-	max-height:94px;
-}
-
-.recuploaddate {
-	min-width:0;
-	text-overflow:ellipsis;
-}
 .logo {
 	width: 120px; 
 	height: 20px; 
 	max-width: 120px;
 }
 
+/*next: do animation, with keyframe? then design logo - draw svg online?*/
 
 .headercontactbutton {
 	background-color:red;
@@ -102,9 +72,7 @@ button {
 	top:1px;
 }
 
-.mail-icon-path:hover {
-	
-}
+
 
 .headercontactbutton:hover {
 	color:red;
@@ -116,6 +84,79 @@ button {
 	fill:red;
 
 }
-.header {
+.burgermenu:hover {
+	color:red;
+}
+.icons:hover {
+	color:red;
+	transform:scale(1.5);
+}
 
+.content {
+	padding-top:50px;
+	display:flex;
+	justify-content:center;
+	gap:25px;
+}
+
+
+.text-container {
+	display:flex;
+	flex-direction:column;
+}
+
+.h1-container {
+	display:flex;
+	font-size:78px;
+}
+
+.h1-text {
+	margin:0;
+	padding:0;
+}
+
+.h2-text {
+	font-size:39px;
+	margin:0;
+	padding:0;
+}
+
+.h3-text {
+	display:flex;
+	max-width:350px;
+	font-size:22px;
+}
+
+
+.h4-icons-container {
+	display:flex;
+	width:300px;
+	font-size:20px;
+	outline:solid red 2px;
+	text-align:center;
+	justify-content:space-between;
+}
+
+/* .h4-icon1:hover path{
+	fill:red;	
+}
+
+.h4-icon2:hover path{
+	fill:red;	
+}
+
+.h4-icon3:hover path{
+	fill:red;	
+} */
+
+.h4-icon:hover path{
+	fill:red;	
+	transform:scale(0.9);
+	transform-origin:center;
+}
+
+.logo-big {
+	width:750px;
+	height:750px;
+	background-color:grey;
 }
