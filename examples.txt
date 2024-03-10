@@ -1,0 +1,29 @@
+ https://bridge504.qodeinteractive.com/
+    Mouse over menu below main landing item
+
+https://bridge489.qodeinteractive.com/
+    How to show "Finished Tearly Project"
+
+https://the7.io/winery/?utm_source=demo-panel
+    Landing /w background images, maybe animate?
+
+https://the7.io/main/?utm_source=demo-panel
+    how to style icons
+
+https://the7.io/elementor-creative-light/?utm_source=demo-panel
+    color scheme / white
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    The font from my logo. The other one is Catalogue
+
+https://www.color-hex.com/color/9fc7aa
+    Logo color + triadic colors
+
+https://www.youtube.com/watch?v=fzZTvLmmTzM
+https://www.youtube.com/watch?v=N5wpD9Ov_To
+    CSS Unit Tutorial
+
+https://www.youtube.com/watch?v=UmzFk68Bwdk
+    Scroll-animations

@@ -2,9 +2,9 @@ html {
 	font-family: "Bebas Neue", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	color:white;
+	color:black;
 	box-sizing: border-box;
-	background-color: black;
+	background-color: white;
 }
 
 button {
@@ -98,17 +98,22 @@ button {
 	display:flex;
 	justify-content:center;
 	gap:25px;
+	flex-wrap: wrap-reverse;
+	perspective:1000px;
 }
 
 
 .text-container {
 	display:flex;
 	flex-direction:column;
+	min-width: 350px;
 }
 
 .h1-container {
 	display:flex;
 	font-size:78px;
+	justify-content:center;
+	
 }
 
 .h1-text {
@@ -152,5 +157,10 @@ button {
 }
 
 .logo-big {
+	
+	transition: rotate 300ms ease;
+}
 
+.logo-big:hover {
+	rotate: x 45deg;
 }
