@@ -27,3 +27,6 @@ https://www.youtube.com/watch?v=N5wpD9Ov_To
 
 https://www.youtube.com/watch?v=UmzFk68Bwdk
     Scroll-animations
+
+
+<img loading="lazy" src=".."> to make images lazyload
