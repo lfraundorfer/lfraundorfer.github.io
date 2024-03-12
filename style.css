@@ -98,7 +98,7 @@ button {
 	justify-content:center;
 	gap:25px;
 	flex-wrap: wrap-reverse;
-	perspective:1000px;
+	flex-direction: column;
 }
 
 
@@ -107,6 +107,49 @@ button {
 	flex-direction:column;
 	min-width: 350px;
 	align-items: center;
+
+}
+
+.hero-container {
+	position:relative;
+	overflow:hidden;
+}
+
+
+.hero-bg-img img {
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	object-fit: cover;
+	opacity:0.5;
+	z-index:-1;
+
+	animation: fade-in ease-in-out forwards;
+	animation-timeline: scroll(root);
+}
+
+@keyframes fade-in {
+	25% {opacity: 1;}
+	85% {opacity: 0; scale: 3;}
+}
+
+/* only on the bg-image! z-index and position */
+
+
+
+.text-container div {
+	z-index:1;
+	position:relative;
+	animation: fade-out linear;
+	animation-timeline: view();
+	animation-range: exit -100px;
+
+}
+
+@keyframes fade-out {
+	to {opacity: 0;}
 }
 
 .h1-container {
@@ -119,6 +162,8 @@ button {
 .h1-text {
 	margin:0;
 	padding:0;
+	position:relative;
+	z-index:1;
 }
 
 .h2-text {
@@ -159,13 +204,14 @@ button {
 
 .logo-big {
 	transition: rotate 300ms ease;
+	text-align: center;
 }
 
 .logo-big:hover {
 	rotate: x 45deg;
 }
 
-.scroll-reveal-spacer {
+/* .scroll-reveal-spacer {
 	height:1000px;
 	width:1000px;
 	order:-1;
@@ -193,9 +239,9 @@ button {
 	animation: scroll-reveal linear forwards;
 	animation-timeline: view();
 	
-}
+} */
 
-.scroll-reveal h2 {
+/* .scroll-reveal h2 {
 	line-height: normal;
 }
 
@@ -213,4 +259,22 @@ button {
 	to {
 		background-size: 100% 100%;
 	}
+} */
+
+.portfolio {
+	display:flex;
+	gap: 10px;
+	justify-content:space-between;
+	flex-direction: column;
+}
+
+.card {
+	width:500px;
+	height:500px;
+	background-color: grey;
+	border-radius: 15px 0px 15px 0px;
+}
+
+.card:hover {
+
 }
