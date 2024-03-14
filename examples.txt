@@ -21,12 +21,4 @@ https://the7.io/elementor-creative-light/?utm_source=demo-panel
 https://www.color-hex.com/color/9fc7aa
     Logo color + triadic colors
 
-https://www.youtube.com/watch?v=fzZTvLmmTzM
-https://www.youtube.com/watch?v=N5wpD9Ov_To
-    CSS Unit Tutorial
-
-https://www.youtube.com/watch?v=UmzFk68Bwdk
-    Scroll-animations
-
-
 <img loading="lazy" src=".."> to make images lazyload
