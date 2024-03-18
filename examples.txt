@@ -22,3 +22,7 @@ https://www.color-hex.com/color/9fc7aa
     Logo color + triadic colors
 
 <img loading="lazy" src=".."> to make images lazyload
+
+
+https://contra.com/freelance-industry-report-2021/
+	Stark effektbetriebene Website - Testimonial Section & How Quotes appear
