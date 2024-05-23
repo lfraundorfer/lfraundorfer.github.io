@@ -1,0 +1,91 @@
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.admaker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  width: 50vw;
+  flex-direction: column;
+}
+
+.billboard {
+  position: relative;
+  width: 290px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.billboard-jpg {
+  height: 100%;
+  position: absolute;
+}
+
+.campaign {
+  position: absolute;
+  font-weight: 800;
+  opacity: 0;
+  width: 40%;
+  height: 69%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.campaign.active {
+  opacity: 1;
+}
+
+.campaign::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: red;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 2s ease, height 2s ease;
+  z-index: 0;
+}
+
+.headline {
+  position: absolute;
+  color: blue;
+  font-size: 0;
+  z-index: 1;
+}
+
+.campaign.active::before {
+  animation: growCircle 2s forwards;
+}
+
+@keyframes growCircle {
+  to {
+    width: 200%;
+    height: 200%;
+  }
+}
+
+@keyframes changeText {
+  to {
+    font-size: 16px;
+    color: blue;
+  }
+}
+
+.campaign.active .headline {
+  animation: changeText 2s ease forwards;
+}
+
+.switch-btn.active {
+  background-color: red;
+}
