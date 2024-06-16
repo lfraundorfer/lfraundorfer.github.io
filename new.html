@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Be heard.</title>
     <link href="new.css" rel="stylesheet" />
+    <script src="new.js"></script>
   </head>
   <body>
-    <menu>
-      <menu-logo>menu-logo</menu-logo>
-      <menu-items>menu-items</menu-items>
-    </menu>
+    <div id="menu">
+      <menu-logo><a href="#top">menu-logo</a></menu-logo>
+      <menu-items
+        ><ul>
+          <li><a href="#partners">partners</a></li>
+          <li><a href="#portfolio">portfolio</a></li>
+          <li><a href="#usp">usp</a></li>
+          <li><a href="#stats">stats</a></li>
+          <li><a href="#why-us">why-us</a></li>
+        </ul></menu-items
+      >
+    </div>
 
     <hero>
-      <div class="hero-text">HELLO</div>
       <div class="youtube-container">
+        <div class="overlay"></div>
+        <div class="hero-text">HELLO</div>
         <iframe
           src="https://www.youtube.com/embed/WhY7uyc56ms?autoplay=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1&playlist=WhY7uyc56ms"
           title="YouTube video player"
@@ -24,14 +34,15 @@
         ></iframe>
       </div>
     </hero>
-    <partners>
+
+    <div id="partners">
       <span>partners-1</span>
       <span>partners-2</span>
       <span>partners-3</span>
       <span>partners-4</span>
       <span>partners-5</span>
-    </partners>
-    <portfolio>
+    </div>
+    <div id="portfolio">
       <span>portfolio-1</span>
       <span>portfolio-2</span>
       <span>portfolio-3</span>
@@ -40,19 +51,19 @@
       <span>portfolio-6</span>
       <span>portfolio-7</span>
       <span>portfolio-8</span>
-    </portfolio>
-    <quotes> quotes</quotes>
-    <usp>
+    </div>
+    <div id="quotes">quotes</div>
+    <div id="usp">
       <span>usp-1</span>
       <span>usp-2</span>
       <span>usp-3</span>
-    </usp>
-    <stats>
+    </div>
+    <div id="stats">
       <span>stats-1</span>
       <span>stats-2</span>
       <span>stats-3</span>
-    </stats>
-    <why-us> why-us </why-us>
+    </div>
+    <div id="why-us">why-us</div>
     <contact-us>contact-us</contact-us>
     <footer>footer</footer>
   </body>
