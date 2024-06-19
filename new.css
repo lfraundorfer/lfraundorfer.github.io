@@ -101,6 +101,10 @@ hero {
   width: 200%;
   animation: scroll-horizontal 20s linear infinite;
   border: 1px solid red;
+
+  &:hover {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes scroll-horizontal {
@@ -138,6 +142,53 @@ hero {
   width: 20%;
   height: 30%;
   background-color: orange;
+  border-radius: 5%;
+}
+
+#portfolio span img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.portfolio-pic {
+  width: 20%;
+  height: 30%;
+  background-color: orange;
+  border-radius: 5%;
+}
+
+.portfolio-pic img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.appear {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.appear.inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.appear:nth-child(1).inview {
+  transition-delay: 0.1s;
+}
+
+.appear:nth-child(2).inview {
+  transition-delay: 0.2s;
+}
+
+.appear:nth-child(3).inview {
+  transition-delay: 0.3s;
+}
+
+.appear:nth-child(4).inview {
+  transition-delay: 0.4s;
 }
 
 quotes {

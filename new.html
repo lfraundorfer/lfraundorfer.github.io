@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Be heard.</title>
     <link href="new.css" rel="stylesheet" />
-    <script src="new.js"></script>
+    <script src="new.js" defer></script>
   </head>
   <body>
     <div id="menu">
       <menu-logo><a href="#top">menu-logo</a></menu-logo>
-      <menu-items
-        ><ul>
+      <menu-items>
+        <ul>
           <li><a href="#partners">partners</a></li>
           <li><a href="#portfolio">portfolio</a></li>
           <li><a href="#usp">usp</a></li>
           <li><a href="#stats">stats</a></li>
           <li><a href="#why-us">why-us</a></li>
-        </ul></menu-items
-      >
+        </ul>
+      </menu-items>
     </div>
 
     <hero>
@@ -39,16 +39,35 @@
       <div class="wrapper">
         <div id="partner-logos">
           <div class="logos">
-            <span>partners-1</span>
-            <span>partners-2</span>
+            <span
+              ><img
+                loading="lazy"
+                src="https://picsum.photos/200/300"
+                alt="samsung"
+            /></span>
+            <span
+              ><img
+                loading="lazy"
+                src="https://picsum.photos/200/300"
+                alt="samsung"
+            /></span>
             <span>partners-3</span>
             <span>partners-4</span>
             <span>partners-5</span>
           </div>
-
           <div class="logos">
-            <span>partners-1</span>
-            <span>partners-2</span>
+            <span
+              ><img
+                loading="lazy"
+                src="https://picsum.photos/200/300"
+                alt="samsung"
+            /></span>
+            <span
+              ><img
+                loading="lazy"
+                src="https://picsum.photos/200/300"
+                alt="samsung"
+            /></span>
             <span>partners-3</span>
             <span>partners-4</span>
             <span>partners-5</span>
@@ -56,16 +75,26 @@
         </div>
       </div>
     </div>
+
     <div id="portfolio">
-      <span>portfolio-1</span>
-      <span>portfolio-2</span>
-      <span>portfolio-3</span>
-      <span>portfolio-4</span>
-      <span>portfolio-5</span>
-      <span>portfolio-6</span>
-      <span>portfolio-7</span>
-      <span>portfolio-8</span>
+      <div class="portfolio-pic appear">
+        <img loading="lazy" src="https://picsum.photos/600/400" alt="samsung" />
+      </div>
+      <div class="portfolio-pic appear">
+        <img loading="lazy" src="https://picsum.photos/600/400" alt="samsung" />
+      </div>
+      <span class="appear">portfolio-3</span>
+      <span class="appear">portfolio-4</span>
+      <span class="appear"
+        ><img loading="lazy" src="https://picsum.photos/800/600" alt="nike"
+      /></span>
+      <div class="portfolio-pic appear">
+        <img loading="lazy" src="https://picsum.photos/600/400" alt="samsung" />
+      </div>
+      <span class="appear">portfolio-7</span>
+      <span class="appear">portfolio-8</span>
     </div>
+
     <div id="quotes">quotes</div>
     <div id="usp">
       <span>usp-1</span>
