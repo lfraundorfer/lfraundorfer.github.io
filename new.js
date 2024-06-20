@@ -14,23 +14,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  const items = document.querySelectorAll(".appear");
+  const rows = document.querySelectorAll(".row");
 
-  const active = function (entries) {
+  const active = function (entries, observer) {
     entries.forEach((entry) => {
+      console.log("Entry:", entry); // Debugging log
       if (entry.isIntersecting) {
+        console.log("Adding inview to", entry.target); // Debugging log
         entry.target.classList.add("inview");
-      } else {
-        entry.target.classList.remove("inview");
+        observer.unobserve(entry.target);
       }
     });
   };
 
   const io2 = new IntersectionObserver(active, {
-    threshold: [0, 0.1, 0.5, 1], // Different thresholds for testing
+    threshold: 0.7, // Trigger when 20% of the row is visible
   });
 
-  items.forEach((item) => {
-    io2.observe(item);
+  rows.forEach((row) => {
+    console.log("Observing row:", row); // Debugging log
+    io2.observe(row);
   });
 });
