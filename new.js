@@ -18,9 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const active = function (entries, observer) {
     entries.forEach((entry) => {
-      console.log("Entry:", entry); // Debugging log
       if (entry.isIntersecting) {
-        console.log("Adding inview to", entry.target); // Debugging log
         entry.target.classList.add("inview");
         observer.unobserve(entry.target);
       }
@@ -32,17 +30,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   rows.forEach((row) => {
-    console.log("Observing row:", row); // Debugging log
     io2.observe(row);
   });
 
-  const testimonials = document.querySelector(".testimonials");
   const nextButton = document.querySelector(".next-btn");
   const prevButton = document.querySelector(".prev-btn");
   const quotes = document.querySelectorAll(".quote");
   const quoteIcons = document.querySelectorAll(".quote-slider-icon");
   const numberOfSlides = quotes.length;
   var slideNumber = 0;
+
+  const quoteSection = document.querySelector(".quote-slider");
 
   //forward:
   //make respective quote active
@@ -62,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     quotes[slideNumber].classList.add("active");
     quoteIcons[slideNumber].classList.add("active");
-    console.log(slideNumber);
   });
 
   //back:
@@ -83,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     quotes[slideNumber].classList.add("active");
     quoteIcons[slideNumber].classList.add("active");
-    console.log(slideNumber);
   });
 
   //automated play:
@@ -105,18 +101,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
       quotes[slideNumber].classList.add("active");
       quoteIcons[slideNumber].classList.add("active");
-      console.log(slideNumber);
     }, 4000);
   };
   repeater();
 
   //stop automated play on mouseover
-  testimonials.addEventListener("mouseover", () => {
-    clearInterval(playSlider);
+  quoteSection.addEventListener("mouseover", () => {
+    console.log("Autoplay stopped");
   });
 
   //start again on mouseout
-  testimonials.addEventListener("mouseout", () => {
+  quoteSection.addEventListener("mouseout", () => {
+    repeater();
+  });
+
+  nextButton.addEventListener("mouseover", () => {
+    clearInterval(playSlider);
+  });
+
+  nextButton.addEventListener("mouseout", () => {
+    repeater();
+  });
+
+  prevButton.addEventListener("mouseover", () => {
+    clearInterval(playSlider);
+  });
+
+  prevButton.addEventListener("mouseout", () => {
     repeater();
   });
 });
