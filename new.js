@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const io2 = new IntersectionObserver(active, {
-    threshold: 0.7, // Trigger when 20% of the row is visible
+    threshold: 0.7, // Trigger when 70% of the row is visible
   });
 
   rows.forEach((row) => {
@@ -42,92 +42,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const quoteSection = document.querySelector(".quote-slider");
 
-  //forward:
-  //make respective quote active
+  function showSlide(index) {
+    quotes.forEach((quote, i) => {
+      quote.classList.toggle("active", i === index);
+    });
+    quoteIcons.forEach((quoteIcon, i) => {
+      quoteIcon.classList.toggle("active", i === index);
+    });
+  }
+
+  // Forward
   nextButton.addEventListener("click", () => {
-    slideNumber++;
-    quotes.forEach((quote) => {
-      quote.classList.remove("active");
-    });
-    quoteIcons.forEach((quoteIcon) => {
-      quoteIcon.classList.remove("active");
-    });
-
-    //go back to start at overflow
-    if (slideNumber > numberOfSlides - 1) {
-      slideNumber = 0;
-    }
-
-    quotes[slideNumber].classList.add("active");
-    quoteIcons[slideNumber].classList.add("active");
+    slideNumber = (slideNumber + 1) % numberOfSlides;
+    showSlide(slideNumber);
   });
 
-  //back:
-  //make respective quote active
+  // Back
   prevButton.addEventListener("click", () => {
-    slideNumber--;
-    quotes.forEach((quote) => {
-      quote.classList.remove("active");
-    });
-    quoteIcons.forEach((quoteIcon) => {
-      quoteIcon.classList.remove("active");
-    });
-
-    //go back to start at overflow
-    if (slideNumber < 0) {
-      slideNumber = numberOfSlides - 1;
-    }
-
-    quotes[slideNumber].classList.add("active");
-    quoteIcons[slideNumber].classList.add("active");
+    slideNumber = (slideNumber - 1 + numberOfSlides) % numberOfSlides;
+    showSlide(slideNumber);
   });
 
-  //automated play:
-  var playSlider;
-  var repeater = () => {
-    playSlider = setInterval(function () {
-      slideNumber++;
-      quotes.forEach((quote) => {
-        quote.classList.remove("active");
-      });
-      quoteIcons.forEach((quoteIcon) => {
-        quoteIcon.classList.remove("active");
-      });
-
-      //go back to start at overflow
-      if (slideNumber > numberOfSlides - 1) {
-        slideNumber = 0;
-      }
-
-      quotes[slideNumber].classList.add("active");
-      quoteIcons[slideNumber].classList.add("active");
+  // Automated play
+  let playSlider;
+  function startAutoplay() {
+    playSlider = setInterval(() => {
+      slideNumber = (slideNumber + 1) % numberOfSlides;
+      showSlide(slideNumber);
     }, 4000);
-  };
-  repeater();
+  }
 
-  //stop automated play on mouseover
-  quoteSection.addEventListener("mouseover", () => {
-    console.log("Autoplay stopped");
-  });
-
-  //start again on mouseout
-  quoteSection.addEventListener("mouseout", () => {
-    repeater();
-  });
-
-  nextButton.addEventListener("mouseover", () => {
+  function stopAutoplay() {
     clearInterval(playSlider);
-  });
+  }
 
-  nextButton.addEventListener("mouseout", () => {
-    repeater();
-  });
+  // Start autoplay initially
+  startAutoplay();
 
-  prevButton.addEventListener("mouseover", () => {
-    clearInterval(playSlider);
-  });
+  // Stop autoplay on mouseover
+  quoteSection.addEventListener("mouseover", stopAutoplay);
 
-  prevButton.addEventListener("mouseout", () => {
-    repeater();
-  });
+  // Start autoplay again on mouseout
+  quoteSection.addEventListener("mouseout", startAutoplay);
 });
