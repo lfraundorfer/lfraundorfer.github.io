@@ -293,6 +293,16 @@ quotes {
   background-color: teal;
   width: 75vw;
   height: 35vh;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5%;
+}
+
+.usp-section {
+  background-color: blanchedalmond;
+  width: 20%;
+  border-radius: 5%;
+  text-align: center;
 }
 
 #stats {
