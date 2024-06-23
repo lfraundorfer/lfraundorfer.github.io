@@ -84,4 +84,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Start autoplay again on mouseout
   quoteSection.addEventListener("mouseout", startAutoplay);
+
+  // Stats animation
+  const stats = document.querySelectorAll(".stats span");
+
+  const animateStats = function (entries, observer) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        console.log("innasekt");
+        stats.forEach((stat, index) => {
+          setTimeout(() => {
+            stat.classList.add("animate");
+          }, index * 1000);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  const statsSection = document.querySelector(".stats");
+  if (statsSection) {
+    const io3 = new IntersectionObserver(animateStats, {
+      threshold: 0.5, // Trigger when 50% of the stats section is visible
+    });
+    io3.observe(statsSection);
+  }
 });

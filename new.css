@@ -305,7 +305,7 @@ quotes {
   text-align: center;
 }
 
-#stats {
+.stats {
   display: flex;
   width: 50%;
   height: 30vh;
@@ -316,8 +316,25 @@ quotes {
   align-items: center;
 }
 
-#stats span {
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stats span {
+  opacity: 0;
   width: 25%;
   height: 30%;
   background-color: greenyellow;
+  transform: translateY(20px);
+}
+
+.stats span.animate {
+  animation: fadeIn 1s forwards;
 }
