@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Be heard.</title>
     <link href="new.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
     <script src="new.js" defer></script>
   </head>
   <body>
@@ -268,7 +273,93 @@
       <span>stats-3</span>
     </div>
     <div id="why-us">why-us</div>
-    <contact-us>contact-us</contact-us>
-    <footer>footer</footer>
+    <div class="contact-us">
+      <form
+        id="contact-form"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+      >
+        <!-- Replace with your Access Key -->
+        <input
+          type="hidden"
+          name="access_key"
+          value="3937ab00-0ff1-48d8-9ce5-38470c4da02c"
+        />
+
+        <!-- Form Inputs. Each input must have a name="" attribute -->
+        <input type="text" name="name" value="Neuer Kunde..." required />
+        <input type="email" name="email" value="neuer@kunde.com..." required />
+        <textarea name="message" required></textarea>
+
+        <!-- Honeypot Spam Protection -->
+        <input
+          type="checkbox"
+          name="botcheck"
+          class="hidden"
+          style="display: none"
+        />
+        <div class="h-captcha" data-captcha="true"></div>
+
+        <!-- Custom Confirmation / Success Page -->
+        <input
+          type="hidden"
+          name="redirect"
+          value="https://mywebsite.com/thanks.html"
+        />
+
+        <button type="submit">Submit Form</button>
+      </form>
+    </div>
+    <div class="todo">
+      footer https://i.imgur.com/vtJN0bc.png With info I need re: WKO
+      https://www.wko.at/internetrecht/website-impressum-eu and add address,
+      contact formular, WIth a fun quote: Made with (beer emoji) in Germany. Or
+      something. (Coffee emoji) I like the 2nd dark one
+    </div>
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="path_to_your_logo.png" alt="LIFT Logo" />
+        </div>
+        <div class="footer-contact">
+          <p>
+            <span class="material-icons">public</span>
+            Megaphonia e.U. • Inh: Linus Fraundorfer
+          </p>
+          <p>
+            <span class="material-icons">home</span>
+            Bandgasse 10/2 • 1070 Vienna, Austria
+          </p>
+
+          <p>
+            <span class="material-icons">call</span>
+            +43 677 617 517 69
+            <span class="material-icons">mail</span>
+            my@mail.de
+          </p>
+
+          <p>
+            <span class="material-icons">menu_book</span>
+            <a href="./impressum.html">Impressum</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-links">
+          <a href="#">Home</a>
+          <a href="#">Partners</a>
+          <a href="#">Portfolio</a>
+          <a href="#">USP</a>
+          <a href="#">Stats</a>
+          <a href="#">Why Us?</a>
+        </div>
+        <div class="footer-copyright">
+          <span class="copyright-text"
+            >Made with <span class="material-icons">fitness_center</span> in
+            Vienna.</span
+          >
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
