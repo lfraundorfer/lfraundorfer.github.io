@@ -1,3 +1,11 @@
+:root {
+  --main-bg-color: cornflowerblue; /*0a1128 is footer color*/
+  --secondary-bg-color: green;
+  --active-color: red;
+  --main-font-color: #ffffff;
+  --secondary-font-color: #444;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +17,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100vw;
+  background-color: var(--main-bg-color);
 }
 
 #menu {
@@ -19,7 +28,7 @@ body {
   position: fixed;
   top: 0;
   z-index: 1000;
-  background-color: aqua;
+  background-color: var(--secondary-bg-color);
 }
 
 #menu menu-items ul > li {
@@ -81,7 +90,7 @@ hero {
 }
 
 #partners {
-  background-color: green;
+  background-color: var(--main-bg-color);
   width: 100%;
   height: 15vh;
   position: relative;
@@ -123,12 +132,12 @@ hero {
 }
 
 .logos span {
-  background-color: aquamarine;
+  background-color: var(--main-bg-color);
   display: inline-block;
 }
 
 #portfolio {
-  background-color: blue;
+  background-color: var(--main-bg-color);
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -151,7 +160,7 @@ hero {
 .portfolio-pic {
   width: 20%;
   height: 100%;
-  background-color: orange;
+  background-color: var(--secondary-bg-color);
   border-radius: 5%;
 }
 
@@ -195,7 +204,7 @@ hero {
 
 quotes {
   margin-top: 5vh;
-  background-color: purple;
+  background-color: var(--main-bg-color);
   display: flex;
   width: 50vw;
   height: 25vh;
@@ -205,7 +214,7 @@ quotes {
 .quote-slider {
   width: 25rem;
   height: 20rem;
-  background-color: #9fc7aa;
+  background-color: var(--secondary-bg-color);
   border-radius: 2.5rem;
   position: relative;
 }
@@ -224,7 +233,7 @@ quotes {
 }
 
 .quote-slider-icons .quote-slider-icon.active {
-  background: red;
+  background: var(--active-color);
 }
 
 .chevron-left,
@@ -290,7 +299,7 @@ quotes {
 
 #usp {
   margin-top: 5vh;
-  background-color: teal;
+  background-color: var(--main-bg-color);
   width: 75vw;
   height: 35vh;
   display: flex;
@@ -299,7 +308,7 @@ quotes {
 }
 
 .usp-section {
-  background-color: blanchedalmond;
+  background-color: var(--secondary-bg-color);
   width: 20%;
   border-radius: 5%;
   text-align: center;
@@ -311,7 +320,7 @@ quotes {
   height: 30vh;
   gap: 10%;
   margin-top: 5vh;
-  background-color: brown;
+  background-color: var(--main-bg-color);
   justify-content: center;
   align-items: center;
 }
@@ -331,8 +340,9 @@ quotes {
   opacity: 0;
   width: 25%;
   height: 30%;
-  background-color: greenyellow;
+  background-color: var(--secondary-bg-color);
   transform: translateY(20px);
+  border: 1px solid red;
 }
 
 .stats span.animate {
@@ -355,8 +365,8 @@ quotes {
 }
 
 .footer {
-  background-color: #0a1128;
-  color: #ffffff;
+  background-color: var(--main-bg-color);
+  color: var(--main-font-color);
   text-align: center;
   padding: 20px;
   width: 100%;
@@ -366,7 +376,7 @@ quotes {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid var(--secondary-font-color);
   padding-bottom: 20px;
   margin-bottom: 20px;
 }
@@ -400,7 +410,7 @@ quotes {
 }
 
 .footer-social-media a {
-  color: #ffffff;
+  color: var(--main-font-color);
   margin: 0 10px;
   font-size: 1.2em;
 }
