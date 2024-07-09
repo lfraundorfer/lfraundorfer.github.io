@@ -10,6 +10,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: var(--main-font-color);
 }
 
 body {
@@ -23,12 +24,14 @@ body {
 #menu {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 5vh;
   width: 95vw;
   position: fixed;
   top: 0;
   z-index: 1000;
   background-color: var(--secondary-bg-color);
+  border-radius: 2.5rem;
 }
 
 #menu menu-items ul > li {
