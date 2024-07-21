@@ -130,4 +130,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     io3.observe(statsSection);
   }
+
+  const titles = ["Be heard.", "Welcome to Our Site", "Your Trusted Partner"];
+  let currentIndex = 0;
+
+  setInterval(() => {
+    document.title = titles[currentIndex];
+    currentIndex = (currentIndex + 1) % titles.length;
+  }, 1500); // Change title every 3 seconds
 });

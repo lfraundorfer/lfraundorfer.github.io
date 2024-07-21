@@ -1,9 +1,15 @@
 :root {
-  --main-bg-color: cornflowerblue; /*0a1128 is footer color*/
-  --secondary-bg-color: green;
+  --main-bg-color: rgb(255, 255, 255); /*0a1128 is footer color*/
+  --secondary-bg-color: #97BF0D;
   --active-color: red;
-  --main-font-color: #ffffff;
+  --main-font-color: #2e3e56;
   --secondary-font-color: #444;
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
 }
 
 * {
@@ -11,6 +17,7 @@
   padding: 0;
   box-sizing: border-box;
   color: var(--main-font-color);
+  
 }
 
 body {
@@ -96,25 +103,17 @@ hero {
   background-color: var(--main-bg-color);
   width: 100%;
   height: 15vh;
-  position: relative;
   overflow: hidden;
 }
 
 .wrapper {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-}
-
-#partner-logos {
   display: flex;
+  height:100%;
   width: 200%;
   animation: scroll-horizontal 20s linear infinite;
-  border: 1px solid red;
 }
 
-#partner-logos:hover {
+.wrapper:hover {
   animation-play-state: paused;
 }
 
@@ -127,17 +126,22 @@ hero {
   }
 }
 
-.logos {
+.wrapper .logos {
   display: flex;
-  width: 50%;
+  flex:1 1 20%;
   justify-content: space-around;
   align-items: center;
 }
 
-.logos span {
+.logos img{
+  width:100%;
+  height: auto;
+}
+
+/* .logos span {
   background-color: var(--main-bg-color);
   display: inline-block;
-}
+} */
 
 #portfolio {
   background-color: var(--main-bg-color);
