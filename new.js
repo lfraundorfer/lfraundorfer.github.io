@@ -86,15 +86,36 @@ document.addEventListener("DOMContentLoaded", function () {
   quoteSection.addEventListener("mouseout", startAutoplay);
 
   // Stats animation
-  const stats = document.querySelectorAll(".stats span");
+  const stats = document.querySelectorAll(".stats .stats-copy");
+
+  function countUp(element, endValue, duration) {
+    const startValue = parseInt(element.textContent); // Use the initial value from the element's text content
+    let startTime = null;
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      const currentValue = Math.floor(progress * (endValue - startValue) + startValue);
+      element.textContent = currentValue;
+      if (progress < 1) {
+        requestAnimationFrame(animation);
+      }
+    }
+
+    requestAnimationFrame(animation);
+  }
 
   const animateStats = function (entries, observer) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        console.log("innasekt");
         stats.forEach((stat, index) => {
           setTimeout(() => {
             stat.classList.add("animate");
+            const counterElement = stat.querySelector('.counter');
+            const endValue = parseInt(counterElement.getAttribute('data-target'));
+            const duration = parseInt(counterElement.getAttribute('data-duration'));
+            countUp(counterElement, endValue, duration);
           }, index * 1000);
         });
         observer.unobserve(entry.target);

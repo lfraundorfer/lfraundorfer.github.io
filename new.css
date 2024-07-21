@@ -326,7 +326,9 @@ quotes {
   background-color: var(--main-bg-color);
   justify-content: center;
   align-items: center;
+  border: 2px solid red;
 }
+
 
 @keyframes fadeIn {
   from {
@@ -339,17 +341,22 @@ quotes {
   }
 }
 
-.stats span {
+.stats .stats-copy {
   opacity: 0;
   width: 25%;
-  height: 30%;
+  /* height: 30%; */
   background-color: var(--secondary-bg-color);
   transform: translateY(20px);
-  border: 1px solid red;
+  border: 1px solid beige;
+  text-align: center;
 }
 
-.stats span.animate {
+.stats .stats-copy.animate {
   animation: fadeIn 1s forwards;
+}
+
+.stats .stats-copy h1 {
+  color:var(--main-font-color);
 }
 
 .contact-us {
