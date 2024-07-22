@@ -46,9 +46,22 @@ body {
   display: inline-block;
 }
 
-a {
-  color: inherit;
+#menu a {
+  color: var(--main-font-color);
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#menu a:hover {
+  color: var(--active-color); /* Change to the desired color on hover */
+}
+
+#menu a.active {
+  color: orange;
+}
+
+#menu a:active {
+  color: orange;
 }
 
 hero {

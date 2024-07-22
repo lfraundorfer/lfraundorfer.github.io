@@ -137,5 +137,49 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(() => {
     document.title = titles[currentIndex];
     currentIndex = (currentIndex + 1) % titles.length;
-  }, 1500); // Change title every 3 seconds
+  }, 1500); // Change title every x seconds
+
+
+  const menuLinks = document.querySelectorAll('#menu a');
+  const sections = document.querySelectorAll('section');
+
+  function removeActiveClasses() {
+    menuLinks.forEach(link => link.classList.remove('active'));
+  }
+
+  function setActiveLink(id) {
+    removeActiveClasses();
+    const activeLink = document.querySelector(`#menu a[href="#${id}"]`);
+    if (activeLink) {
+      activeLink.classList.add('active');
+      console.log(id);
+    }
+  }
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', function () {
+      const sectionId = this.getAttribute('href').substring(1);
+      setActiveLink(sectionId);
+    });
+  });
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5
+  };
+
+  const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActiveLink(entry.target.id);
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
 });
