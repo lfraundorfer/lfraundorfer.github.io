@@ -18,9 +18,20 @@ document.addEventListener("DOMContentLoaded", function () {
     while (true) {
       const imgSrc = `${basePath}cat${categoryIndex + 1}-${i}.jpg`;
       if (await imageExists(imgSrc)) {
+        const card = document.createElement('div');
+        card.className = 'card';
+
         const img = new Image();
         img.src = imgSrc;
-        output.appendChild(img);
+        
+        const cardHover = document.createElement('div');
+        cardHover.className = 'card-hover';
+        cardHover.textContent = 'SHOW ME HOMIE';
+
+        card.appendChild(img);
+        card.appendChild(cardHover);
+        output.appendChild(card);
+        
         i++;
       } else {
         break;

@@ -86,22 +86,78 @@ a {
   gap: 1rem;
 }
 
-.category-images img {
-  width: 30%; /* Approx. 3 per row on a standard screen */
-  max-width: 100%; /* Ensure it doesn't exceed container width */
-  height: auto;
-  border-radius: 0.5rem;
+/* Styles from Page A */
+.card {
+  width: 25vw;
+  height: 25vw;
+  outline: 2px solid #9fc7aa;
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
-/* Responsive design */
+.card img {
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-hover {
+  opacity: 0;
+
+  position: absolute;
+  top:50%;
+  right: 0;
+  transform: translate(100%, -50%);  /* Initial position outside the right edge, vertically centered */
+  transform-origin: right;   /* Ensure the transform origin is the right edge */
+
+  transform: translateX(100%);
+  transition: transform 0.5s, opacity 0.25s;
+  transform-origin: right;
+  width: 50%;
+  height: 50px;
+  background-color: #9fc7aa;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Adjust text color as needed */
+  font-weight: bold;
+}
+
+.card:hover .card-hover {
+  opacity: 1;
+  /* transform: translateX(0); */
+  transform: translate(0, -50%);
+}
+
+.card:hover img {
+  animation: card-zoom 5s infinite linear alternate;
+}
+
+@keyframes card-zoom {
+  to {
+    transform: scale(1.5);
+  }
+}
+
 @media (max-width: 1024px) {
-  .category-images img {
+  .card {
     width: 45%; /* Approx. 2 per row on a smaller screen */
   }
 }
 
 @media (max-width: 768px) {
-  .category-images img {
+  .card {
     width: 100%; /* 1 per row on mobile */
   }
 }
+
