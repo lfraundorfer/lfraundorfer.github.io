@@ -1,10 +1,11 @@
 :root {
-  --main-bg-color: rgb(255, 255, 255); /*0a1128 is footer color*/
-  --secondary-bg-color: #97BF0D;
-  --active-color: red;
+  --main-bg-color: rgba(0, 0, 0, 0.1); /*0a1128 is footer color*/
+  --secondary-bg-color: #9fc7aa;
+  --secondary-bg-color-rgba: rgba(159, 199, 170, 0.5);
+  --active-color: #C79FBC;
   --main-font-color: #2e3e56;
   --secondary-font-color: #444;
-  font-family: Inter, sans-serif;
+  font-family: Inter, "Bebas Neue", sans-serif;
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
 
 }
@@ -37,8 +38,9 @@ body {
   position: fixed;
   top: 0;
   z-index: 1000;
-  background-color: var(--secondary-bg-color);
+  background-color: var(--secondary-bg-color-rgba);
   border-radius: 2.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 #menu menu-items ul > li {
@@ -57,11 +59,11 @@ body {
 }
 
 #menu a.active {
-  color: orange;
+  color: var(--active-color);
 }
 
 #menu a:active {
-  color: orange;
+  color: var(--active-color);
 }
 
 hero {
@@ -115,9 +117,10 @@ hero {
 #partners {
   background-color: var(--main-bg-color);
   width: 100%;
-  height: 15vh;
+  height: 20vh;
   overflow: hidden;
 }
+
 
 .wrapper {
   display: flex;
@@ -148,7 +151,7 @@ hero {
 
 .logos img{
   width:100%;
-  height: auto;
+  height:auto;
 }
 
 /* .logos span {
@@ -285,7 +288,8 @@ quotes {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  /* hyphens: auto; */
+  text-align: justify;
 }
 
 .quote-slider .quote.active {
@@ -298,6 +302,13 @@ quotes {
   position: absolute;
 }
 
+.quote-slider .quote-text {
+  font-style: italic;
+}
+
+.quote-slider .quote-author {
+  /* font-style: italic; */
+}
 .quote-slider-icons {
   z-index: 999;
   width: 5rem;
@@ -343,7 +354,6 @@ quotes {
   background-color: var(--main-bg-color);
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
 }
 
 

@@ -1,10 +1,17 @@
 :root {
-  --main-bg-color: cornflowerblue; /* 0a1128 is footer color */
-  --secondary-bg-color: green;
-  --active-color: red;
-  --main-font-color: #ffffff;
+  --main-bg-color: rgba(0, 0, 0, 0.1); /*0a1128 is footer color*/
+  --secondary-bg-color: #9fc7aa;
+  --active-color: #C79FBC;
+  --main-font-color: #2e3e56;
   --secondary-font-color: #444;
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+
 }
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
+}
+
 
 * {
   /* margin: 0; */
