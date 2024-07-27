@@ -132,11 +132,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const titles = ["Be heard.", "Welcome to Our Site", "Your Trusted Partner"];
-  let currentIndex = 0;
+  let currentTitleIndex = 0;
 
   setInterval(() => {
-    document.title = titles[currentIndex];
-    currentIndex = (currentIndex + 1) % titles.length;
+    document.title = titles[currentTitleIndex];
+    currentTitleIndex = (currentTitleIndex + 1) % titles.length;
   }, 1500); // Change title every x seconds
 
 
@@ -200,6 +200,96 @@ const observer = new IntersectionObserver(observerCallback, observerOptions);
 
 sections.forEach(section => {
   observer.observe(section);
+});
+
+
+const images = [
+  { src: './img/hero/webp/crowd-heart.webp', word: 'word1' },
+  { src: './img/hero/webp/crowd-happy.webp', word: 'word2' },
+  { src: './img/hero/webp/fireworks.webp', word: 'word3' },
+  { src: './img/hero/webp/hercules.webp', word: 'word4' },
+  { src: './img/hero/webp/soccer.webp', word: 'word5' },
+  { src: './img/hero/webp/swimmer.webp', word: 'word6' }
+];
+
+const zoomDuration = 3000;
+const typingDuration = zoomDuration * 2 / 3;
+const stayDuration = 1000;
+const delayAfterErase = 500;
+
+let currentIndex = 0;
+const imageElement = document.getElementById('animated-image');
+const textElement = document.getElementById('animated-text');
+const blackOverlay = document.getElementById('black-overlay');
+
+function applyZoomAnimation(element) {
+  element.style.animation = 'none';
+  element.offsetHeight;
+  element.style.animation = '';
+  element.style.animation = 'card-zoom 3s ease-in-out forwards';
+}
+
+function updateContent() {
+  const currentImage = images[currentIndex];
+  typeWriter(currentImage.word, () => {
+    setTimeout(() => {
+      erase(currentImage.word, () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        const nextImage = images[currentIndex];
+        imageElement.src = nextImage.src;
+        applyZoomAnimation(imageElement);
+        blackOverlay.style.opacity = 0;
+        setTimeout(updateContent, delayAfterErase);
+      });
+    }, stayDuration);
+  });
+}
+
+function typeWriter(word, callback) {
+  let i = 0;
+  textElement.textContent = '|';
+  function type() {
+    if (i < word.length) {
+      textElement.textContent = textElement.textContent.slice(0, -1) + word.charAt(i) + '|';
+      i++;
+      setTimeout(type, typingDuration / word.length);
+    } else {
+      setTimeout(callback, 1500);
+    }
+  }
+  type();
+}
+
+function erase(word, callback) {
+  let i = word.length;
+  blackOverlay.style.opacity = 1;
+  function eraseChar() {
+    if (i > 0) {
+      textElement.textContent = textElement.textContent.slice(0, -2) + '|';
+      i--;
+      setTimeout(eraseChar, delayAfterErase / word.length);
+    } else {
+      textElement.textContent = '|';
+      setTimeout(callback, delayAfterErase);
+    }
+  }
+  eraseChar();
+}
+
+// Initial setup
+imageElement.src = images[currentIndex].src;
+applyZoomAnimation(imageElement);
+typeWriter(images[currentIndex].word, () => {
+  setTimeout(() => {
+    erase(images[currentIndex].word, () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      const nextImage = images[currentIndex];
+      imageElement.src = nextImage.src;
+      applyZoomAnimation(imageElement);
+      blackOverlay.style.opacity = 0;
+      setTimeout(updateContent, delayAfterErase);
+    });
+  }, stayDuration);
 });
 
 });
