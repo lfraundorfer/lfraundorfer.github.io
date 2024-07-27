@@ -31,7 +31,16 @@ body, html {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 3s ease-in-out, opacity 1s ease-in-out;
+    animation: card-zoom 3s ease-in-out forwards;
+}
+
+@keyframes card-zoom {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
 }
 
 .fade-in {
@@ -67,7 +76,7 @@ body, html {
 .typing {
     white-space: nowrap;
     overflow: hidden;
-    animation: typing var(--typing-duration) steps(var(--steps), end), blink-caret 0.75s step-end infinite;
+    animation: typing var(--typing-duration) steps(var(--steps), end);
 }
 
 @keyframes typing {
@@ -75,7 +84,3 @@ body, html {
     to { width: 100%; }
 }
 
-@keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: orange; }
-}
