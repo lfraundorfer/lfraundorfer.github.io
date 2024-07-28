@@ -140,156 +140,153 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 1500); // Change title every x seconds
 
 
-// New code for active menu item
-const menuLinks = document.querySelectorAll('#menu a');
-const sections = document.querySelectorAll('#partners, #portfolio, #usp, #stats, #why-us, #contact-form');
+  // New code for active menu item
+  const menuLinks = document.querySelectorAll('#menu a');
+  const sections = document.querySelectorAll('#partners, #portfolio, #usp, #stats, #why-us, #contact-form');
 
-function removeActiveClasses() {
-  menuLinks.forEach(link => link.classList.remove('active'));
-}
-
-function setActiveLink(id) {
-  removeActiveClasses();
-  const activeLink = document.querySelector(`#menu a[href="#${id}"]`);
-  if (activeLink) {
-    activeLink.classList.add('active');
-    console.log("Active link set:", id);
+  function removeActiveClasses() {
+    menuLinks.forEach(link => link.classList.remove('active'));
   }
-}
 
-menuLinks.forEach(link => {
-  link.addEventListener('click', function () {
-    const sectionId = this.getAttribute('href').substring(1);
-    setActiveLink(sectionId);
+  function setActiveLink(id) {
+    removeActiveClasses();
+    const activeLink = document.querySelector(`#menu a[href="#${id}"]`);
+    if (activeLink) {
+      activeLink.classList.add('active');
+      console.log("Active link set:", id);
+    }
+  }
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', function () {
+      const sectionId = this.getAttribute('href').substring(1);
+      setActiveLink(sectionId);
+    });
   });
-});
 
-let lastScrollY = window.scrollY;
+  let lastScrollY = window.scrollY;
 
-const observerOptions = {
-  root: null,
-  rootMargin: '0px',
-  threshold: 0.5
-};
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5
+  };
 
-function findClosestSection() {
-  let closestSection = sections[0];
-  let closestDistance = Math.abs(sections[0].getBoundingClientRect().top);
+  function findClosestSection() {
+    let closestSection = sections[0];
+    let closestDistance = Math.abs(sections[0].getBoundingClientRect().top);
+
+    sections.forEach(section => {
+      const distance = Math.abs(section.getBoundingClientRect().top);
+      if (distance < closestDistance) {
+        closestSection = section;
+        closestDistance = distance;
+      }
+    });
+
+    return closestSection;
+  }
+
+  const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const closestSection = findClosestSection();
+        setActiveLink(closestSection.id);
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
 
   sections.forEach(section => {
-    const distance = Math.abs(section.getBoundingClientRect().top);
-    if (distance < closestDistance) {
-      closestSection = section;
-      closestDistance = distance;
-    }
+    observer.observe(section);
   });
 
-  return closestSection;
-}
 
-const observerCallback = (entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const closestSection = findClosestSection();
-      setActiveLink(closestSection.id);
+  const images = [
+    { src: './img/hero/webp/crowd-heart.webp', word: 'word1' },
+    { src: './img/hero/webp/crowd-happy.webp', word: 'word2' },
+    { src: './img/hero/webp/fireworks.webp', word: 'word3' },
+    { src: './img/hero/webp/hercules.webp', word: 'word4' },
+    { src: './img/hero/webp/soccer.webp', word: 'word5' },
+    { src: './img/hero/webp/swimmer.webp', word: 'word6' }
+  ];
+
+  const zoomDuration = 3000;
+  const typingDuration = zoomDuration * 2 / 3;
+  const stayDuration = 1000;
+  const delayAfterErase = 500;
+
+  let currentIndex = 0;
+  const imageElements = document.querySelectorAll('.animated-image');
+  const textElement = document.getElementById('animated-text');
+
+  function showImage(index) {
+    imageElements.forEach((img, i) => {
+      img.classList.remove('show');
+      if (i === index) {
+        img.classList.add('show');
+        img.style.animation = 'none'; // Reset animation
+        img.offsetHeight; // Trigger reflow
+        img.style.animation = ''; // Restart animation
+        img.style.animation = 'card-zoom 3s ease-in-out forwards';
+      }
+    });
+  }
+
+  function updateContent() {
+    const currentImage = images[currentIndex];
+    typeWriter(currentImage.word, () => {
+      setTimeout(() => {
+        erase(currentImage.word, () => {
+          currentIndex = (currentIndex + 1) % images.length;
+          showImage(currentIndex);
+          setTimeout(updateContent, delayAfterErase);
+        });
+      }, stayDuration);
+    });
+  }
+
+  function typeWriter(word, callback) {
+    let i = 0;
+    textElement.textContent = '|';
+    function type() {
+      if (i < word.length) {
+        textElement.textContent = textElement.textContent.slice(0, -1) + word.charAt(i) + '|';
+        i++;
+        setTimeout(type, typingDuration / word.length);
+      } else {
+        setTimeout(callback, 1500);
+      }
     }
-  });
-};
+    type();
+  }
 
-const observer = new IntersectionObserver(observerCallback, observerOptions);
+  function erase(word, callback) {
+    let i = word.length;
+    function eraseChar() {
+      if (i > 0) {
+        textElement.textContent = textElement.textContent.slice(0, -2) + '|';
+        i--;
+        setTimeout(eraseChar, delayAfterErase / word.length);
+      } else {
+        textElement.textContent = '|';
+        setTimeout(callback, delayAfterErase);
+      }
+    }
+    eraseChar();
+  }
 
-sections.forEach(section => {
-  observer.observe(section);
-});
-
-
-const images = [
-  { src: './img/hero/webp/crowd-heart.webp', word: 'word1' },
-  { src: './img/hero/webp/crowd-happy.webp', word: 'word2' },
-  { src: './img/hero/webp/fireworks.webp', word: 'word3' },
-  { src: './img/hero/webp/hercules.webp', word: 'word4' },
-  { src: './img/hero/webp/soccer.webp', word: 'word5' },
-  { src: './img/hero/webp/swimmer.webp', word: 'word6' }
-];
-
-const zoomDuration = 3000;
-const typingDuration = zoomDuration * 2 / 3;
-const stayDuration = 1000;
-const delayAfterErase = 500;
-
-let currentIndex = 0;
-const imageElement = document.getElementById('animated-image');
-const textElement = document.getElementById('animated-text');
-const blackOverlay = document.getElementById('black-overlay');
-
-function applyZoomAnimation(element) {
-  element.style.animation = 'none';
-  element.offsetHeight;
-  element.style.animation = '';
-  element.style.animation = 'card-zoom 3s ease-in-out forwards';
-}
-
-function updateContent() {
-  const currentImage = images[currentIndex];
-  typeWriter(currentImage.word, () => {
+  // Initial setup
+  showImage(currentIndex);
+  typeWriter(images[currentIndex].word, () => {
     setTimeout(() => {
-      erase(currentImage.word, () => {
+      erase(images[currentIndex].word, () => {
         currentIndex = (currentIndex + 1) % images.length;
-        const nextImage = images[currentIndex];
-        imageElement.src = nextImage.src;
-        applyZoomAnimation(imageElement);
-        blackOverlay.style.opacity = 0;
+        showImage(currentIndex);
         setTimeout(updateContent, delayAfterErase);
       });
     }, stayDuration);
   });
-}
-
-function typeWriter(word, callback) {
-  let i = 0;
-  textElement.textContent = '|';
-  function type() {
-    if (i < word.length) {
-      textElement.textContent = textElement.textContent.slice(0, -1) + word.charAt(i) + '|';
-      i++;
-      setTimeout(type, typingDuration / word.length);
-    } else {
-      setTimeout(callback, 1500);
-    }
-  }
-  type();
-}
-
-function erase(word, callback) {
-  let i = word.length;
-  blackOverlay.style.opacity = 1;
-  function eraseChar() {
-    if (i > 0) {
-      textElement.textContent = textElement.textContent.slice(0, -2) + '|';
-      i--;
-      setTimeout(eraseChar, delayAfterErase / word.length);
-    } else {
-      textElement.textContent = '|';
-      setTimeout(callback, delayAfterErase);
-    }
-  }
-  eraseChar();
-}
-
-// Initial setup
-imageElement.src = images[currentIndex].src;
-applyZoomAnimation(imageElement);
-typeWriter(images[currentIndex].word, () => {
-  setTimeout(() => {
-    erase(images[currentIndex].word, () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      const nextImage = images[currentIndex];
-      imageElement.src = nextImage.src;
-      applyZoomAnimation(imageElement);
-      blackOverlay.style.opacity = 0;
-      setTimeout(updateContent, delayAfterErase);
-    });
-  }, stayDuration);
-});
 
 });

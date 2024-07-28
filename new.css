@@ -7,8 +7,8 @@
   --secondary-font-color: #444;
   font-family: Inter, "Bebas Neue", sans-serif;
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
-
 }
+
 @supports (font-variation-settings: normal) {
   :root { font-family: InterVariable, sans-serif; }
 }
@@ -26,6 +26,7 @@ body {
   width: 100vw;
   background-color: var(--main-bg-color);
   color: var(--main-font-color);
+  gap:5vh;
 }
 
 #menu {
@@ -114,7 +115,7 @@ body {
   display:block;
 }
 
-.filter-green{
+.filter-green {
   filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
 }
 
@@ -123,49 +124,31 @@ menu-items button.headercontactbutton:hover .filter-green {
 }
 
 hero {
-  margin-top: 5vh;
-  height: 90vh;
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Ensure content doesn't overflow */
+  margin-top: 10vh;
+  height:60vh;
+  width:80vw;
 }
-
 .hero-container {
-  width: 100%;
-  /* max-width: 1200px; Adjust to your preference */
+  /* margin-top: 5vh; */
   height: 100%;
+  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.hero-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem; /* Adjust the size as needed */
-  color: white; /* Adjust the text color as needed */
-  pointer-events: none;
+  overflow: hidden;
+  background-color: var(--main-bg-color);
 }
 
 .animation-container {
   position: relative;
-  width: 80%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   border: 2px solid #000;
-  display:flex;
-  justify-content: center;
-  align-items: center;;
-  margin-top: 5vh; /* Align with existing hero container */
 }
 
 .image-container {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
@@ -173,21 +156,17 @@ hero {
   justify-content: center;
 }
 
-.image-container img {
+.animated-image {
+  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  animation: card-zoom 3s ease-in-out forwards;
+  opacity: 0;
   transition: opacity 1s ease-in-out;
 }
 
-@keyframes card-zoom {
-  from {
-      transform: scale(1);
-  }
-  to {
-      transform: scale(1.2);
-  }
+.animated-image.show {
+  opacity: 1;
 }
 
 .text-overlay {
@@ -199,6 +178,7 @@ hero {
   height: 100%;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  z-index:3;
 }
 
 .typing {
@@ -206,25 +186,14 @@ hero {
   overflow: hidden;
 }
 
-.black-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: black;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+@keyframes card-zoom {
+  from {
+      transform: scale(1);
+  }
+  to {
+      transform: scale(1.2);
+  }
 }
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
 
 #partners {
   background-color: var(--main-bg-color);
@@ -232,7 +201,6 @@ hero {
   height: 20vh;
   overflow: hidden;
 }
-
 
 .wrapper {
   display: flex;
@@ -261,15 +229,10 @@ hero {
   align-items: center;
 }
 
-.logos img{
+.logos img {
   width:100%;
   height:auto;
 }
-
-/* .logos span {
-  background-color: var(--main-bg-color);
-  display: inline-block;
-} */
 
 #portfolio {
   background-color: var(--main-bg-color);
@@ -346,6 +309,7 @@ quotes {
   justify-content: center;
   align-items: center;
 }
+
 .quote-slider {
   width: 25rem;
   height: 20rem;
@@ -357,6 +321,7 @@ quotes {
 .quote-slider:hover .navigation {
   opacity: 1;
 }
+
 .navigation {
   display: flex;
   align-items: center;
@@ -382,9 +347,7 @@ quotes {
 }
 
 .quote-slider .quote {
-  /* z-index:1; */
   position: absolute;
-  /* background:red; */
   opacity: 0;
   transform: translateX(125%);
   width: 15rem;
@@ -400,7 +363,6 @@ quotes {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* hyphens: auto; */
   text-align: justify;
 }
 
@@ -418,9 +380,7 @@ quotes {
   font-style: italic;
 }
 
-.quote-slider .quote-author {
-  /* font-style: italic; */
-}
+
 .quote-slider-icons {
   z-index: 999;
   width: 5rem;
@@ -432,6 +392,7 @@ quotes {
   display: flex;
   justify-content: space-between;
 }
+
 .quote-slider-icon {
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
@@ -466,8 +427,8 @@ quotes {
   background-color: var(--main-bg-color);
   justify-content: center;
   align-items: center;
+  border-radius:2rem;
 }
-
 
 @keyframes fadeIn {
   from {
@@ -483,7 +444,6 @@ quotes {
 .stats .stats-copy {
   opacity: 0;
   width: 25%;
-  /* height: 30%; */
   background-color: var(--secondary-bg-color);
   transform: translateY(20px);
   border: 1px solid beige;
@@ -492,6 +452,7 @@ quotes {
 
 .stats .stats-copy.animate {
   animation: fadeIn 1s forwards;
+  border-radius:1rem;
 }
 
 .stats .stats-copy h1 {
@@ -514,10 +475,9 @@ quotes {
 }
 
 .footer {
-  background-color: var(--main-bg-color);
+  background-color: var(--secondary-bg-color);
   color: var(--main-font-color);
   text-align: center;
-  padding: 20px;
   width: 100%;
 }
 
@@ -526,8 +486,6 @@ quotes {
   justify-content: space-around;
   align-items: center;
   border-bottom: 1px solid var(--secondary-font-color);
-  padding-bottom: 20px;
-  margin-bottom: 20px;
 }
 
 .footer-logo {
@@ -578,16 +536,47 @@ quotes {
 }
 
 .footer-links a {
-  color: #ffffff;
   text-decoration: none;
   margin: 0 10px;
+  color: var(--main-font-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+
+.footer-links a:hover {
+  color: var(--active-color); /* Change to the desired color on hover */
+}
+
+.footer-contact p {
+  display: flex;
+  align-items: center;
+}
+
+.footer-contact .material-icons {
+  vertical-align: middle;
+  margin-right: 8px; /* Adjust spacing if needed */
+}
+
+.footer-contact a {
+  /* text-decoration: none; */
+  color: var(--main-font-color);
 }
 
 .footer-copyright {
-  margin-top: 20px;
   text-align: right;
   display: flex;
   align-items: center;
+}
+
+.copyright-text {
+  display: flex;
+  align-items: center;
+}
+
+.copyright-text .material-icons {
+  vertical-align: middle;
+  margin-left: 4px; /* Adjust the spacing if needed */
 }
 
 @media (max-width: 768px) {
