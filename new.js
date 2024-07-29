@@ -14,24 +14,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  const rows = document.querySelectorAll(".row");
+  const portfolioSection = document.querySelector("#portfolio");
 
-  const active = function (entries, observer) {
+  const activePortfolio = function (entries, observer) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("inview");
+        console.log("portfolio innasekt1")
+        portfolioSection.classList.add("inview");
         observer.unobserve(entry.target);
       }
     });
   };
 
-  const io2 = new IntersectionObserver(active, {
+  const ioPortfolio = new IntersectionObserver(activePortfolio, {
     threshold: 0.7, // Trigger when 70% of the row is visible
   });
 
-  rows.forEach((row) => {
-    io2.observe(row);
-  });
+  ioPortfolio.observe(portfolioSection);
 
   const nextButton = document.querySelector(".next-btn");
   const prevButton = document.querySelector(".prev-btn");
@@ -49,7 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
     quoteIcons.forEach((quoteIcon, i) => {
       quoteIcon.classList.toggle("active", i === index);
     });
+    slideNumber = index; // Update the slide number
   }
+
+  quoteIcons.forEach((quoteIcon, i) => {
+    quoteIcon.addEventListener("click", () => {
+      showSlide(i);
+    });
+  });
 
   // Forward
   nextButton.addEventListener("click", () => {

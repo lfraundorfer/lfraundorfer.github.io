@@ -196,7 +196,7 @@ hero {
 }
 
 #partners {
-  background-color: var(--main-bg-color);
+  /* background-color: var(--main-bg-color); */
   width: 100%;
   height: 20vh;
   overflow: hidden;
@@ -235,66 +235,65 @@ hero {
 }
 
 #portfolio {
-  background-color: var(--main-bg-color);
+  /* background-color: var(--main-bg-color); */
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 5%;
   height: 35vh;
 }
 
-/* Ensure rows maintain flexbox layout */
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 5%;
-  width: 100%;
-  height: 40%;
+#portfolio h1 {
+  text-align: center;
+  padding: 0.5rem;
 }
 
+.portfolio-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 5%;
+  flex-wrap: wrap;
+  height: 75%;
+}
 /* Ensure portfolio-pic fits correctly within the row */
 .portfolio-pic {
   width: 20%;
-  height: 100%;
-  background-color: var(--secondary-bg-color);
-  border-radius: 5%;
+  height: 100%; /* Adjust height to fit within the single row */
+  border: 2px solid var(--secondary-bg-color);
+  border-radius: 2.5rem;
 }
 
 .portfolio-pic img {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: 2.5rem;
 }
 
 /* Ensure initial state for .appear elements */
-.row .appear {
+#portfolio .appear {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s ease;
 }
 
 /* Apply staggered animation with inview class */
-.row.inview .appear:nth-child(1) {
+#portfolio.inview .appear:nth-child(1) {
   transition-delay: 0.1s;
   opacity: 1;
   transform: translateY(0);
 }
 
-.row.inview .appear:nth-child(2) {
+#portfolio.inview .appear:nth-child(2) {
   transition-delay: 0.2s;
   opacity: 1;
   transform: translateY(0);
 }
 
-.row.inview .appear:nth-child(3) {
+#portfolio.inview .appear:nth-child(3) {
   transition-delay: 0.3s;
   opacity: 1;
   transform: translateY(0);
 }
 
-.row.inview .appear:nth-child(4) {
+#portfolio.inview .appear:nth-child(4) {
   transition-delay: 0.4s;
   opacity: 1;
   transform: translateY(0);
@@ -302,7 +301,8 @@ hero {
 
 quotes {
   margin-top: 5vh;
-  background-color: var(--main-bg-color);
+  /* background-color: var(--main-bg-color); */
+  border: 2px solid var(--secondary-bg-color);
   display: flex;
   width: 50vw;
   height: 25vh;
@@ -313,7 +313,7 @@ quotes {
 .quote-slider {
   width: 25rem;
   height: 20rem;
-  background-color: var(--secondary-bg-color);
+  border: 2px solid var(--secondary-bg-color);
   border-radius: 2.5rem;
   position: relative;
 }
@@ -403,7 +403,6 @@ quotes {
 
 #usp {
   margin-top: 5vh;
-  background-color: var(--main-bg-color);
   width: 75vw;
   height: 35vh;
   display: flex;
@@ -424,7 +423,7 @@ quotes {
   height: 30vh;
   gap: 10%;
   margin-top: 5vh;
-  background-color: var(--main-bg-color);
+  /* background-color: var(--main-bg-color); */
   justify-content: center;
   align-items: center;
   border-radius:2rem;
