@@ -204,12 +204,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   const images = [
-    { src: './img/hero/webp/crowd-heart.webp', word: 'word1' },
-    { src: './img/hero/webp/crowd-happy.webp', word: 'word2' },
-    { src: './img/hero/webp/fireworks.webp', word: 'word3' },
-    { src: './img/hero/webp/hercules.webp', word: 'word4' },
-    { src: './img/hero/webp/soccer.webp', word: 'word5' },
-    { src: './img/hero/webp/swimmer.webp', word: 'word6' }
+    { src: './img/hero/webp/crowd-heart.webp', word: 'LOVE' },
+    { src: './img/hero/webp/crowd-happy.webp', word: 'SMILES' },
+    { src: './img/hero/webp/fireworks.webp', word: 'WOW' },
+    { src: './img/hero/webp/hercules.webp', word: 'HISTORY' },
+    { src: './img/hero/webp/soccer.webp', word: 'EXCITEMENT' },
+    { src: './img/hero/webp/swimmer.webp', word: 'WAVES' }
   ];
 
   const zoomDuration = 3000;
