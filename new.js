@@ -1,104 +1,85 @@
-document.addEventListener("DOMContentLoaded", function () {
-  window.onscroll = function () {
-    myFunction();
-  };
+document.addEventListener("DOMContentLoaded", () => {
+  const navbar = document.getElementById("menu");
+  const portfolioSection = document.querySelector("#portfolio");
+  const nextButton = document.querySelector(".next-btn");
+  const prevButton = document.querySelector(".prev-btn");
+  const quotes = document.querySelectorAll(".quote");
+  const quoteIcons = document.querySelectorAll(".quote-slider-icon");
+  const quoteSection = document.querySelector(".quote-slider");
+  const stats = document.querySelectorAll(".stats .stats-copy");
+  const statsSection = document.querySelector(".stats");
+  const menuLinks = document.querySelectorAll('#menu a');
+  const sections = document.querySelectorAll('#partners, #portfolio, #usp, #stats, #why-us, #contact-form');
+  const textElement = document.getElementById('animated-text');
+  const imageElements = document.querySelectorAll('.animated-image');
 
-  var navbar = document.getElementById("menu");
-  var sticky = navbar.offsetTop;
+  const STICKY_THRESHOLD = navbar.offsetTop;
+  const AUTOPLAY_INTERVAL = 4000;
+  const FADE_IN_THRESHOLD = 0.5;
+  const PORTFOLIO_THRESHOLD = 0.7;
+  const images = [
+    { src: './img/hero/webp/crowd-heart.webp', word: 'LOVE' },
+    { src: './img/hero/webp/crowd-happy.webp', word: 'SMILES' },
+    { src: './img/hero/webp/fireworks.webp', word: 'WOW' },
+    { src: './img/hero/webp/hercules.webp', word: 'HISTORY' },
+    { src: './img/hero/webp/soccer.webp', word: 'EXCITEMENT' },
+    { src: './img/hero/webp/swimmer.webp', word: 'WAVES' }
+  ];
 
-  function myFunction() {
-    if (window.scrollY >= sticky) {
+  let currentIndex = 0;
+  let slideNumber = 0;
+  let playSlider;
+
+  window.onscroll = () => {
+    if (window.scrollY >= STICKY_THRESHOLD) {
       navbar.classList.add("sticky");
     } else {
       navbar.classList.remove("sticky");
     }
-  }
+  };
 
-  const portfolioSection = document.querySelector("#portfolio");
-
-  const activePortfolio = function (entries, observer) {
+  const handleIntersection = (entries, observer, callback) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        console.log("portfolio innasekt1")
-        portfolioSection.classList.add("inview");
+        callback(entry.target);
         observer.unobserve(entry.target);
       }
     });
   };
 
-  const ioPortfolio = new IntersectionObserver(activePortfolio, {
-    threshold: 0.7, // Trigger when 70% of the row is visible
-  });
+  const ioPortfolio = new IntersectionObserver(
+    (entries, observer) => handleIntersection(entries, observer, (target) => {
+      portfolioSection.classList.add("inview");
+    }),
+    { threshold: PORTFOLIO_THRESHOLD }
+  );
 
   ioPortfolio.observe(portfolioSection);
 
-  const nextButton = document.querySelector(".next-btn");
-  const prevButton = document.querySelector(".prev-btn");
-  const quotes = document.querySelectorAll(".quote");
-  const quoteIcons = document.querySelectorAll(".quote-slider-icon");
-  const numberOfSlides = quotes.length;
-  var slideNumber = 0;
+  const ioStats = new IntersectionObserver(
+    (entries, observer) => handleIntersection(entries, observer, (target) => {
+      stats.forEach((stat, index) => {
+        setTimeout(() => {
+          stat.classList.add("animate");
+          const counterElement = stat.querySelector('.counter');
+          const endValue = parseInt(counterElement.getAttribute('data-target'));
+          const duration = parseInt(counterElement.getAttribute('data-duration'));
+          countUp(counterElement, endValue, duration);
+        }, index * 1000);
+      });
+    }),
+    { threshold: FADE_IN_THRESHOLD }
+  );
 
-  const quoteSection = document.querySelector(".quote-slider");
-
-  function showSlide(index) {
-    quotes.forEach((quote, i) => {
-      quote.classList.toggle("active", i === index);
-    });
-    quoteIcons.forEach((quoteIcon, i) => {
-      quoteIcon.classList.toggle("active", i === index);
-    });
-    slideNumber = index; // Update the slide number
+  if (statsSection) {
+    ioStats.observe(statsSection);
   }
 
-  quoteIcons.forEach((quoteIcon, i) => {
-    quoteIcon.addEventListener("click", () => {
-      showSlide(i);
-    });
-  });
-
-  // Forward
-  nextButton.addEventListener("click", () => {
-    slideNumber = (slideNumber + 1) % numberOfSlides;
-    showSlide(slideNumber);
-  });
-
-  // Back
-  prevButton.addEventListener("click", () => {
-    slideNumber = (slideNumber - 1 + numberOfSlides) % numberOfSlides;
-    showSlide(slideNumber);
-  });
-
-  // Automated play
-  let playSlider;
-  function startAutoplay() {
-    playSlider = setInterval(() => {
-      slideNumber = (slideNumber + 1) % numberOfSlides;
-      showSlide(slideNumber);
-    }, 4000);
-  }
-
-  function stopAutoplay() {
-    clearInterval(playSlider);
-  }
-
-  // Start autoplay initially
-  startAutoplay();
-
-  // Stop autoplay on mouseover
-  quoteSection.addEventListener("mouseover", stopAutoplay);
-
-  // Start autoplay again on mouseout
-  quoteSection.addEventListener("mouseout", startAutoplay);
-
-  // Stats animation
-  const stats = document.querySelectorAll(".stats .stats-copy");
-
-  function countUp(element, endValue, duration) {
-    const startValue = parseInt(element.textContent); // Use the initial value from the element's text content
+  const countUp = (element, endValue, duration) => {
+    const startValue = parseInt(element.textContent);
     let startTime = null;
 
-    function animation(currentTime) {
+    const animation = (currentTime) => {
       if (startTime === null) startTime = currentTime;
       const elapsedTime = currentTime - startTime;
       const progress = Math.min(elapsedTime / duration, 1);
@@ -107,35 +88,51 @@ document.addEventListener("DOMContentLoaded", function () {
       if (progress < 1) {
         requestAnimationFrame(animation);
       }
-    }
+    };
 
     requestAnimationFrame(animation);
-  }
-
-  const animateStats = function (entries, observer) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        stats.forEach((stat, index) => {
-          setTimeout(() => {
-            stat.classList.add("animate");
-            const counterElement = stat.querySelector('.counter');
-            const endValue = parseInt(counterElement.getAttribute('data-target'));
-            const duration = parseInt(counterElement.getAttribute('data-duration'));
-            countUp(counterElement, endValue, duration);
-          }, index * 1000);
-        });
-        observer.unobserve(entry.target);
-      }
-    });
   };
 
-  const statsSection = document.querySelector(".stats");
-  if (statsSection) {
-    const io3 = new IntersectionObserver(animateStats, {
-      threshold: 0.5, // Trigger when 50% of the stats section is visible
+  const showSlide = (index) => {
+    quotes.forEach((quote, i) => {
+      quote.classList.toggle("active", i === index);
     });
-    io3.observe(statsSection);
-  }
+    quoteIcons.forEach((quoteIcon, i) => {
+      quoteIcon.classList.toggle("active", i === index);
+    });
+    slideNumber = index;
+  };
+
+  quoteIcons.forEach((quoteIcon, i) => {
+    quoteIcon.addEventListener("click", () => {
+      showSlide(i);
+    });
+  });
+
+  nextButton.addEventListener("click", () => {
+    slideNumber = (slideNumber + 1) % quotes.length;
+    showSlide(slideNumber);
+  });
+
+  prevButton.addEventListener("click", () => {
+    slideNumber = (slideNumber - 1 + quotes.length) % quotes.length;
+    showSlide(slideNumber);
+  });
+
+  const startAutoplay = () => {
+    playSlider = setInterval(() => {
+      slideNumber = (slideNumber + 1) % quotes.length;
+      showSlide(slideNumber);
+    }, AUTOPLAY_INTERVAL);
+  };
+
+  const stopAutoplay = () => {
+    clearInterval(playSlider);
+  };
+
+  quoteSection.addEventListener("mouseover", stopAutoplay);
+  quoteSection.addEventListener("mouseout", startAutoplay);
+  startAutoplay();
 
   const titles = ["Be heard.", "Welcome to Our Site", "Your Trusted Partner"];
   let currentTitleIndex = 0;
@@ -143,25 +140,19 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(() => {
     document.title = titles[currentTitleIndex];
     currentTitleIndex = (currentTitleIndex + 1) % titles.length;
-  }, 1500); // Change title every x seconds
+  }, 1500);
 
-
-  // New code for active menu item
-  const menuLinks = document.querySelectorAll('#menu a');
-  const sections = document.querySelectorAll('#partners, #portfolio, #usp, #stats, #why-us, #contact-form');
-
-  function removeActiveClasses() {
+  const removeActiveClasses = () => {
     menuLinks.forEach(link => link.classList.remove('active'));
-  }
+  };
 
-  function setActiveLink(id) {
+  const setActiveLink = (id) => {
     removeActiveClasses();
     const activeLink = document.querySelector(`#menu a[href="#${id}"]`);
     if (activeLink) {
       activeLink.classList.add('active');
-      console.log("Active link set:", id);
     }
-  }
+  };
 
   menuLinks.forEach(link => {
     link.addEventListener('click', function () {
@@ -170,15 +161,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  let lastScrollY = window.scrollY;
-
   const observerOptions = {
     root: null,
     rootMargin: '0px',
     threshold: 0.5
   };
 
-  function findClosestSection() {
+  const findClosestSection = () => {
     let closestSection = sections[0];
     let closestDistance = Math.abs(sections[0].getBoundingClientRect().top);
 
@@ -191,9 +180,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     return closestSection;
-  }
+  };
 
-  const observerCallback = (entries, observer) => {
+  const observerCallback = (entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const closestSection = findClosestSection();
@@ -208,39 +197,50 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(section);
   });
 
-
-  const images = [
-    { src: './img/hero/webp/crowd-heart.webp', word: 'LOVE' },
-    { src: './img/hero/webp/crowd-happy.webp', word: 'SMILES' },
-    { src: './img/hero/webp/fireworks.webp', word: 'WOW' },
-    { src: './img/hero/webp/hercules.webp', word: 'HISTORY' },
-    { src: './img/hero/webp/soccer.webp', word: 'EXCITEMENT' },
-    { src: './img/hero/webp/swimmer.webp', word: 'WAVES' }
-  ];
-
-  const zoomDuration = 3000;
-  const typingDuration = zoomDuration * 2 / 3;
-  const stayDuration = 1000;
-  const delayAfterErase = 500;
-
-  let currentIndex = 0;
-  const imageElements = document.querySelectorAll('.animated-image');
-  const textElement = document.getElementById('animated-text');
-
-  function showImage(index) {
+  const showImage = (index) => {
     imageElements.forEach((img, i) => {
       img.classList.remove('show');
       if (i === index) {
         img.classList.add('show');
-        img.style.animation = 'none'; // Reset animation
-        img.offsetHeight; // Trigger reflow
-        img.style.animation = ''; // Restart animation
+        img.style.animation = 'none';
+        img.offsetHeight;
+        img.style.animation = '';
         img.style.animation = 'card-zoom 3s ease-in-out forwards';
       }
     });
-  }
+  };
 
-  function updateContent() {
+  const typeWriter = (word, callback) => {
+    let i = 0;
+    textElement.textContent = '|';
+    const type = () => {
+      if (i < word.length) {
+        textElement.textContent = textElement.textContent.slice(0, -1) + word.charAt(i) + '|';
+        i++;
+        setTimeout(type, typingDuration / word.length);
+      } else {
+        setTimeout(callback, 1500);
+      }
+    };
+    type();
+  };
+
+  const erase = (word, callback) => {
+    let i = word.length;
+    const eraseChar = () => {
+      if (i > 0) {
+        textElement.textContent = textElement.textContent.slice(0, -2) + '|';
+        i--;
+        setTimeout(eraseChar, delayAfterErase / word.length);
+      } else {
+        textElement.textContent = '|';
+        setTimeout(callback, delayAfterErase);
+      }
+    };
+    eraseChar();
+  };
+
+  const updateContent = () => {
     const currentImage = images[currentIndex];
     typeWriter(currentImage.word, () => {
       setTimeout(() => {
@@ -251,39 +251,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }, stayDuration);
     });
-  }
+  };
 
-  function typeWriter(word, callback) {
-    let i = 0;
-    textElement.textContent = '|';
-    function type() {
-      if (i < word.length) {
-        textElement.textContent = textElement.textContent.slice(0, -1) + word.charAt(i) + '|';
-        i++;
-        setTimeout(type, typingDuration / word.length);
-      } else {
-        setTimeout(callback, 1500);
-      }
-    }
-    type();
-  }
-
-  function erase(word, callback) {
-    let i = word.length;
-    function eraseChar() {
-      if (i > 0) {
-        textElement.textContent = textElement.textContent.slice(0, -2) + '|';
-        i--;
-        setTimeout(eraseChar, delayAfterErase / word.length);
-      } else {
-        textElement.textContent = '|';
-        setTimeout(callback, delayAfterErase);
-      }
-    }
-    eraseChar();
-  }
-
-  // Initial setup
   showImage(currentIndex);
   typeWriter(images[currentIndex].word, () => {
     setTimeout(() => {
@@ -294,5 +263,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }, stayDuration);
   });
-
 });

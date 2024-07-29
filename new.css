@@ -19,17 +19,32 @@
   box-sizing: border-box;
 }
 
+.center-horizontal {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-container,
+.portfolio-wrapper,
+.quote-slider,
+.usp-section,
+.stats {
+  width: 80vw;
+  margin: 0 auto;
+}
+
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Add this line to center content vertically */
   width: 100vw;
   background-color: var(--main-bg-color);
   color: var(--main-font-color);
-  gap:5vh;
+  gap: 5vh;
 }
 
-#menu {
+header#menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,53 +58,41 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-#menu menu-items {
+nav ul {
   display: flex;
   gap: 0.8rem;
   align-items: center;
 }
 
-#menu menu-items ul {
-  height:100%;
-}
-
-#menu menu-items ul > li {
+nav ul li {
   list-style-type: none;
   display: inline-block;
 }
 
-#menu a {
+nav a {
   color: var(--main-font-color);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-#menu a:hover {
+nav a:hover, nav a.active, nav a:active {
   color: var(--active-color); /* Change to the desired color on hover */
 }
 
-#menu a.active {
-  color: var(--active-color);
-}
-
-#menu a:active {
-  color: var(--active-color);
-}
-
-#menu .headercontactbutton {
+.button.headercontactbutton {
   background-color: var(--secondary-bg-color);
   color: white;
   border-radius: 0.8rem;
   padding: 0.8rem 0.4rem;
-  height:5vh;
+  height: 5vh;
   font-weight: 800;
   display: flex;
   align-items: center;
   cursor: pointer;
-  border:none;
+  border: none;
 }
 
-#menu .headercontactbutton:hover {
+.headercontactbutton:hover {
   color: var(--secondary-bg-color);
   background-color: white;
 }
@@ -111,25 +114,25 @@ body {
 
 .headercontactmailicon img {
   height: 100%;
-  width:auto;
-  display:block;
+  width: auto;
+  display: block;
 }
 
 .filter-green {
   filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
 }
 
-menu-items button.headercontactbutton:hover .filter-green {
+.button.headercontactbutton:hover .filter-green {
   filter: invert(0%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
 }
 
-hero {
+.hero {
   margin-top: 10vh;
-  height:60vh;
-  width:80vw;
+  height: 60vh;
+  width: 80vw;
 }
+
 .hero-container {
-  /* margin-top: 5vh; */
   height: 100%;
   width: auto;
   display: flex;
@@ -178,7 +181,7 @@ hero {
   height: 100%;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  z-index:3;
+  z-index: 3;
 }
 
 .typing {
@@ -188,31 +191,28 @@ hero {
 
 @keyframes card-zoom {
   from {
-      transform: scale(1);
+    transform: scale(1);
   }
   to {
-      transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
 
 #partners {
-  /* background-color: var(--main-bg-color); */
   width: 100%;
   height: 20vh;
   overflow: hidden;
 }
 
-
-
 #partners h1 {
-  margin: 0; /* Remove default margin */
-  padding: 0.5rem 0; /* Add some padding if needed */
-  text-align: center; /* Center the header text */
+  margin: 0;
+  padding: 0.5rem 0;
+  text-align: center;
 }
 
 .wrapper {
   display: flex;
-  height:100%;
+  height: calc(100% - 1.5rem); /* Adjust height to take remaining space */
   width: 200%;
   animation: scroll-horizontal 20s linear infinite;
   gap: 1rem;
@@ -233,7 +233,7 @@ hero {
 
 .wrapper .logos {
   display: flex;
-  flex:1 1 20%;
+  flex: 1 1 20%;
   justify-content: space-around;
   align-items: center;
   gap: 1rem;
@@ -241,15 +241,14 @@ hero {
 }
 
 .logos img {
-  width:80%;
-  height:100%;
-  object-fit:contain;
+  width: 80%;
+  height: 100%;
+  object-fit: contain;
   border-radius: 2rem;
   border: 2px solid var(--secondary-bg-color);
 }
 
 #portfolio {
-  /* background-color: var(--main-bg-color); */
   width: 100%;
   height: 35vh;
 }
@@ -266,10 +265,10 @@ hero {
   flex-wrap: wrap;
   height: 75%;
 }
-/* Ensure portfolio-pic fits correctly within the row */
+
 .portfolio-pic {
   width: 20%;
-  height: 100%; /* Adjust height to fit within the single row */
+  height: 100%;
   border: 2px solid var(--secondary-bg-color);
   border-radius: 2.5rem;
 }
@@ -281,14 +280,12 @@ hero {
   border-radius: 2.5rem;
 }
 
-/* Ensure initial state for .appear elements */
 #portfolio .appear {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.5s ease;
 }
 
-/* Apply staggered animation with inview class */
 #portfolio.inview .appear:nth-child(1) {
   transition-delay: 0.1s;
   opacity: 1;
@@ -313,9 +310,8 @@ hero {
   transform: translateY(0);
 }
 
-quotes {
+.quotes {
   margin-top: 5vh;
-  /* background-color: var(--main-bg-color); */
   border: 2px solid var(--secondary-bg-color);
   display: flex;
   width: 50vw;
@@ -370,7 +366,6 @@ quotes {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
 .quote-slider {
@@ -393,7 +388,6 @@ quotes {
 .quote-slider .quote-text {
   font-style: italic;
 }
-
 
 .quote-slider-icons {
   z-index: 999;
@@ -437,10 +431,9 @@ quotes {
   height: 30vh;
   gap: 10%;
   margin-top: 5vh;
-  /* background-color: var(--main-bg-color); */
   justify-content: center;
   align-items: center;
-  border-radius:2rem;
+  border-radius: 2rem;
 }
 
 @keyframes fadeIn {
@@ -461,15 +454,15 @@ quotes {
   transform: translateY(20px);
   border: 1px solid beige;
   text-align: center;
+  border-radius: 1rem;
 }
 
 .stats .stats-copy.animate {
   animation: fadeIn 1s forwards;
-  border-radius:1rem;
 }
 
 .stats .stats-copy h1 {
-  color:var(--main-font-color);
+  color: var(--main-font-color);
 }
 
 .contact-us {
@@ -517,22 +510,17 @@ quotes {
 
 .footer-contact p {
   margin: 5px 0;
-}
-
-.footer-contact i {
-  margin-right: 10px;
-}
-
-.footer-social-media {
   display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  align-items: center;
 }
 
-.footer-social-media a {
+.footer-contact .material-icons {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.footer-contact a {
   color: var(--main-font-color);
-  margin: 0 10px;
-  font-size: 1.2em;
 }
 
 .footer-bottom {
@@ -552,28 +540,11 @@ quotes {
   text-decoration: none;
   margin: 0 10px;
   color: var(--main-font-color);
-  text-decoration: none;
   transition: color 0.3s ease;
 }
 
-
 .footer-links a:hover {
   color: var(--active-color); /* Change to the desired color on hover */
-}
-
-.footer-contact p {
-  display: flex;
-  align-items: center;
-}
-
-.footer-contact .material-icons {
-  vertical-align: middle;
-  margin-right: 8px; /* Adjust spacing if needed */
-}
-
-.footer-contact a {
-  /* text-decoration: none; */
-  color: var(--main-font-color);
 }
 
 .footer-copyright {
