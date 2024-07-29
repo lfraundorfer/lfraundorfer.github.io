@@ -202,11 +202,20 @@ hero {
   overflow: hidden;
 }
 
+
+
+#partners h1 {
+  margin: 0; /* Remove default margin */
+  padding: 0.5rem 0; /* Add some padding if needed */
+  text-align: center; /* Center the header text */
+}
+
 .wrapper {
   display: flex;
   height:100%;
   width: 200%;
   animation: scroll-horizontal 20s linear infinite;
+  gap: 1rem;
 }
 
 .wrapper:hover {
@@ -227,11 +236,16 @@ hero {
   flex:1 1 20%;
   justify-content: space-around;
   align-items: center;
+  gap: 1rem;
+  border-radius: 2rem;
 }
 
 .logos img {
-  width:100%;
-  height:auto;
+  width:80%;
+  height:100%;
+  object-fit:contain;
+  border-radius: 2rem;
+  border: 2px solid var(--secondary-bg-color);
 }
 
 #portfolio {
