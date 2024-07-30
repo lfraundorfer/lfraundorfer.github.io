@@ -505,13 +505,14 @@ nav a:hover, nav a.active, nav a:active {
   background-color: var(--secondary-bg-color);
   border-radius: 5%;
   text-align: center;
+
 }
 
 .stats {
   display: flex;
   width: 75vw;
-  height: 30vh;
-  gap: 10%;
+  flex-wrap: wrap; /* Ensure items wrap */
+  gap: 5%;
   margin-top: 5vh;
   justify-content: center;
   align-items: center;
@@ -531,7 +532,7 @@ nav a:hover, nav a.active, nav a:active {
 
 .stats .stats-copy {
   opacity: 0;
-  /* width: 25%; */
+  flex: 1 1 20%; /* Ensure items are the same width and can flex */
   background-color: var(--secondary-bg-color);
   transform: translateY(20px);
   border: 1px solid beige;
@@ -689,12 +690,12 @@ nav a:hover, nav a.active, nav a:active {
   }
 
   .stats {
-    /* width: 80%; */
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
   }
 
   .stats .stats-copy {
-    /* width: 90%; */
+    width: 80%;
     margin-bottom: 1rem;
   }
 }
