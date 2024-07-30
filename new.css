@@ -206,25 +206,21 @@ nav a:hover, nav a.active, nav a:active {
 
 #partners {
   width: 100%;
-  height: 20vh;
-  overflow: hidden;
-  display:flex;
-  flex-direction: column;
   display: flex;
-  flex: 1 1 auto;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 #partners h1 {
   margin: 0;
   padding: 0.5rem 0;
   text-align: center;
+  flex: 0 1 auto; /* Allow the header to take its natural height */
 }
 
 .wrapper {
   display: flex;
-  /* height: calc(100% - 1.5rem); Adjust height to take remaining space */
-  flex: 1;
-  max-height: 80%;
+  flex: 1; /* Take up remaining space */
   width: 200%;
   animation: scroll-horizontal 20s linear infinite;
   gap: 1rem;
@@ -254,7 +250,7 @@ nav a:hover, nav a.active, nav a:active {
 
 .logos img {
   width: 80%;
-  height: 80%;
+  height: 80%; /* Adjusted to fit within the section */
   object-fit: contain;
   border-radius: 2rem;
   border: 2px solid var(--secondary-bg-color);
