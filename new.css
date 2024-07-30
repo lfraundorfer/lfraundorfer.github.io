@@ -673,8 +673,7 @@ nav a:hover, nav a.active, nav a:active {
   }
 
   .hero-container,
-  .portfolio-wrapper,
-  .quote-slider {
+  .portfolio-wrapper {
     width: 90vw;
   }
 
