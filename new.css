@@ -55,30 +55,29 @@ header#menu {
   background-color: var(--secondary-bg-color-rgba);
   border-radius: 2.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0 1rem; /* Add padding to ensure content doesn't touch edges */
 }
 
 nav {
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: column; */
   width: 100%;
-  justify-content:center;
+  justify-content: center;
 }
 
 nav > div.menu-text {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex:1;
+  flex: 1;
 }
 
 nav menu-logo {
-  /* flex: 1; */
 }
 
 nav menu-items {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   align-items: center;
   flex: 2;
   margin-right: 1rem; /* Add this line */
@@ -102,13 +101,12 @@ nav a {
 }
 
 nav a:hover, nav a.active, nav a:active {
-  color: var(--active-color); /* Change to the desired color on hover */
+  color: var(--active-color);
 }
 
 .contact-button-wrapper {
-  /* display: none; Hide by default */
+  display: flex;
   justify-content: center;
-  /* width: 100%; */
   margin-left: 1rem; /* Add this line for gap */
 }
 
@@ -122,7 +120,6 @@ nav a:hover, nav a.active, nav a:active {
   align-items: center;
   cursor: pointer;
   border: none;
-  /* margin-top: 0.5rem; */
 }
 
 .headercontactbutton:hover {
@@ -132,39 +129,35 @@ nav a:hover, nav a.active, nav a:active {
 
 @media (max-width: 768px) {
   nav > div {
-    /* flex-direction: column; */
   }
 
   nav menu-items {
     align-items: center;
-    /* width: 100%; */
     justify-content: center;
     margin-right: 0; /* Remove the right margin */
   }
 
   nav ul {
-    /* flex-direction: column; */
     align-items: center;
-    /* width: 100%; */
     margin: 0;
   }
 
   nav ul li {
-    margin: 0.5rem 0;
+    /* margin: 0.5rem 0; */
   }
 
   .contact-button-wrapper {
-    display: flex; /* Show contact button in second row */
-    /* flex:1; */
+    display: flex;
     margin-left: 0; /* Remove the left margin */
+    /* margin-top: 1rem; Add this line for vertical gap */
   }
 
   .headercontactbutton {
-    margin: 1rem 0;
-    /* width: 80%; Adjust as needed for centering */
+    /* margin: 1rem 0; */
     text-align: center;
   }
 }
+
 
 
 
@@ -505,18 +498,18 @@ nav a:hover, nav a.active, nav a:active {
   display: flex;
   justify-content: space-between;
   border-radius: 5%;
+  gap:5%;
 }
 
 .usp-section {
   background-color: var(--secondary-bg-color);
-  width: 20%;
   border-radius: 5%;
   text-align: center;
 }
 
 .stats {
   display: flex;
-  width: 50%;
+  width: 75vw;
   height: 30vh;
   gap: 10%;
   margin-top: 5vh;
@@ -538,7 +531,7 @@ nav a:hover, nav a.active, nav a:active {
 
 .stats .stats-copy {
   opacity: 0;
-  width: 25%;
+  /* width: 25%; */
   background-color: var(--secondary-bg-color);
   transform: translateY(20px);
   border: 1px solid beige;
@@ -617,12 +610,15 @@ nav a:hover, nav a.active, nav a:active {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  width: 95vw;
+  margin: 0 auto; /* Center the footer content */
 }
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 0.8rem; /* Ensure spacing between items */
+  align-items: center;
 }
 
 .footer-links a {
@@ -637,9 +633,12 @@ nav a:hover, nav a.active, nav a:active {
 }
 
 .footer-copyright {
-  text-align: right;
   display: flex;
   align-items: center;
+  justify-content: center;
+  /* flex: 1; Allow it to take up available space */
+  text-align: center;
+  /* margin-top: 0.5rem; */
 }
 
 .copyright-text {
@@ -657,28 +656,30 @@ nav a:hover, nav a.active, nav a:active {
 
   .footer-bottom {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center; /* Center items on small screens */
   }
 
   .footer-links {
-    margin-bottom: 20px;
+    justify-content: center; /* Center links on small screens */
+    width: 100%;
   }
 
   .footer-copyright {
-    text-align: center;
-    margin-top: 0;
+    justify-content: center;
+    width: 100%;
+    /* margin-top: 1rem; Add spacing above the copyright */
   }
 
   .hero-container,
   .portfolio-wrapper,
-  .quote-slider,
-  .usp-section,
-  .stats {
+  .quote-slider {
     width: 90vw;
   }
 
   #usp {
-    flex-direction: column;
+    /* flex-direction: column; */
+    flex-wrap:wrap;
     align-items: center;
   }
 
@@ -688,12 +689,12 @@ nav a:hover, nav a.active, nav a:active {
   }
 
   .stats {
-    width: 80%;
-    flex-direction: column;
+    /* width: 80%; */
+    flex-wrap: wrap;
   }
 
   .stats .stats-copy {
-    width: 90%;
+    /* width: 90%; */
     margin-bottom: 1rem;
   }
 }
