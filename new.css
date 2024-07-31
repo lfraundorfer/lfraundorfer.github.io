@@ -213,11 +213,15 @@ nav a:hover, nav a.active, nav a:active {
   width: 80vw;
   display: flex;
   justify-content: center;
+  height: 75vh;
+
+  /* https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images */
 }
 
 .hero-container {
-  height: 100%;
-  width: auto;
+  /* height: 100%; */
+  width: 100%;
+  /* padding-top: 56.25%; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -618,7 +622,7 @@ nav a:hover, nav a.active, nav a:active {
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem; /* Ensure spacing between items */
+  /* gap: 0.8rem; Ensure spacing between items */
   align-items: center;
 }
 

@@ -26,6 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
     { src: './img/hero/webp/swimmer.webp', word: 'WAVES' }
   ];
 
+  const zoomDuration = 3000;
+  const typingDuration = zoomDuration * 2 / 3;
+  const stayDuration = 1000;
+  const delayAfterErase = 500;
+  
   let currentIndex = 0;
   let slideNumber = 0;
   let playSlider;
