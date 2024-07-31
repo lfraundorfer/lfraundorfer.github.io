@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const textElement = document.getElementById('animated-text');
   const imageElements = document.querySelectorAll('.animated-image');
 
-  const STICKY_THRESHOLD = navbar.offsetTop;
   const AUTOPLAY_INTERVAL = 4000;
   const FADE_IN_THRESHOLD = 0.5;
   const PORTFOLIO_THRESHOLD = 0.7;
@@ -30,18 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const typingDuration = zoomDuration * 2 / 3;
   const stayDuration = 1000;
   const delayAfterErase = 500;
-  
+
   let currentIndex = 0;
   let slideNumber = 0;
   let playSlider;
 
-  window.onscroll = () => {
-    if (window.scrollY >= STICKY_THRESHOLD) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
       navbar.classList.add("sticky");
     } else {
       navbar.classList.remove("sticky");
     }
-  };
+  });
 
   const handleIntersection = (entries, observer, callback) => {
     entries.forEach((entry) => {
