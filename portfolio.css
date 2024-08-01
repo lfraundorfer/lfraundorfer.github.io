@@ -6,19 +6,17 @@
   --secondary-font-color: #444;
   font-family: Inter, sans-serif;
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
-
 }
+
 @supports (font-variation-settings: normal) {
   :root { font-family: InterVariable, sans-serif; }
 }
 
-
 * {
-  /* margin: 0; */
-  /* padding: 0; */
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   color: var(--secondary-font-color);
-  /* border: 1px solid red; */
 }
 
 body {
@@ -63,6 +61,10 @@ a {
 .category-selector ul {
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .category {
@@ -93,7 +95,7 @@ a {
   gap: 1rem;
 }
 
-/* Styles from Page A */
+/* Styles for the card component */
 .card {
   width: 25vw;
   height: 25vw;
@@ -119,16 +121,12 @@ a {
 
 .card-hover {
   opacity: 0;
-
   position: absolute;
-  top:50%;
+  top: 50%;
   right: 0;
   transform: translate(100%, -50%);  /* Initial position outside the right edge, vertically centered */
   transform-origin: right;   /* Ensure the transform origin is the right edge */
-
-  transform: translateX(100%);
   transition: transform 0.5s, opacity 0.25s;
-  transform-origin: right;
   width: 50%;
   height: 50px;
   background-color: #9fc7aa;
@@ -142,7 +140,6 @@ a {
 
 .card:hover .card-hover {
   opacity: 1;
-  /* transform: translateX(0); */
   transform: translate(0, -50%);
 }
 
@@ -158,13 +155,14 @@ a {
 
 @media (max-width: 1024px) {
   .card {
-    width: 45%; /* Approx. 2 per row on a smaller screen */
+    width: 45vw; /* Approx. 2 per row on a smaller screen */
+    height: 45vw;
   }
 }
 
 @media (max-width: 768px) {
   .card {
-    width: 100%; /* 1 per row on mobile */
+    width: 90vw; /* 1 per row on mobile */
+    height: 90vw;
   }
 }
-

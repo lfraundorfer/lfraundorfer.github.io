@@ -316,6 +316,9 @@ nav a:hover, nav a.active, nav a:active {
   width: 200%;
   animation: scroll-horizontal 20s linear infinite;
   gap: 1rem;
+
+  justify-content: space-around; /* Distribute space evenly around items */
+  align-items: center; /* Align items in the center */
 }
 
 .wrapper:hover {
@@ -341,8 +344,8 @@ nav a:hover, nav a.active, nav a:active {
 }
 
 .logos img {
-  width: 80%;
-  height: 80%; /* Adjusted to fit within the section */
+  width: 20%;
+  height: auto; /* Adjusted to fit within the section */
   object-fit: contain;
   border-radius: 2rem;
   border: 2px solid var(--secondary-bg-color);
