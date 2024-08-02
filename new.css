@@ -79,7 +79,8 @@ nav > div.menu-text {
   flex: 1;
 }
 
-nav menu-logo {
+nav menu-logo img {
+  width: 2.5rem;
 }
 
 nav menu-items {
@@ -601,6 +602,7 @@ nav a:hover, nav a.active, nav a:active {
 
 .footer-logo img {
   max-width: 100px;
+  width: 10rem;
 }
 
 .footer-contact {
