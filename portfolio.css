@@ -23,10 +23,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
+  /* width: 100vw; */
   margin: 0;
   padding: 0;
   background-color: var(--main-bg-color);
+  min-height:100vh;
+}
+
+main {
+  display:flex;
+  flex-direction: column;
+  flex:1;
 }
 
 #menu {
@@ -41,6 +48,7 @@ body {
   background-color: var(--secondary-bg-color);
   border-radius: 2.5rem;
   padding: 0 1rem;
+  flex:1;
 }
 
 #menu menu-items ul > li {

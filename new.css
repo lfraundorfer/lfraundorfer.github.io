@@ -28,7 +28,7 @@
 .portfolio-wrapper,
 .quote-slider,
 .usp-section,
-.stats {
+#stats {
   width: 80vw;
   margin: 0 auto;
 }
@@ -537,7 +537,7 @@ nav a:hover, nav a.active, nav a:active {
 
 }
 
-.stats {
+#stats {
   display: flex;
   width: 75vw;
   flex-wrap: wrap; /* Ensure items wrap */
@@ -559,7 +559,7 @@ nav a:hover, nav a.active, nav a:active {
   }
 }
 
-.stats .stats-copy {
+#stats .stats-copy {
   opacity: 0;
   flex: 1 1 20%; /* Ensure items are the same width and can flex */
   background-color: var(--secondary-bg-color);
@@ -569,11 +569,11 @@ nav a:hover, nav a.active, nav a:active {
   border-radius: 1rem;
 }
 
-.stats .stats-copy.animate {
+#stats .stats-copy.animate {
   animation: fadeIn 1s forwards;
 }
 
-.stats .stats-copy h1 {
+#stats .stats-copy h1 {
   color: var(--main-font-color);
 }
 
@@ -599,8 +599,13 @@ nav a:hover, nav a.active, nav a:active {
 .footer {
   background-color: var(--secondary-bg-color);
   color: var(--main-font-color);
+  /* color:white; */
   text-align: center;
   width: 100%;
+}
+
+.footer .material-icons {
+  /* color: white; */
 }
 
 .footer-top {
@@ -732,12 +737,12 @@ nav a:hover, nav a.active, nav a:active {
     margin-bottom: 1rem;
   }
 
-  .stats {
+  #stats {
     flex-direction: column;
     align-items: center;
   }
 
-  .stats .stats-copy {
+  #stats .stats-copy {
     width: 80%;
     margin-bottom: 1rem;
   }

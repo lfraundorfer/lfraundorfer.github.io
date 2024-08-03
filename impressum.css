@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--main-bg-color);
+    color: var(--main-font-color);
+  }
+  
+  main {
+    margin-top:10vh;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .impressum-content {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff; /* Optional: add a background color to the content area */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+  }
+  
+  .normal-spacing {
+    margin-bottom: 0.25rem; /* Adjust the value as needed */
+  }
+  
+  .extra-spacing {
+    margin-bottom: 2rem; /* Adjust the value as needed */
+  }
+  
+  
+  #footer-container {
+    width: 100%;
+  }
+  
