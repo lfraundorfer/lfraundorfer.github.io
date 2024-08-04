@@ -101,21 +101,18 @@ document.addEventListener("DOMContentLoaded", function () {
         card.appendChild(cardHover);
         output.appendChild(card);
 
-        // Add event listener for hover and mobile tap
-        card.addEventListener('mouseenter', function () {
-          cardHover.style.opacity = '1';
-          cardHover.style.transform = 'translate(0, -50%)';
-        });
-
-        card.addEventListener('mouseleave', function () {
-          cardHover.style.opacity = '0';
-          cardHover.style.transform = 'translate(100%, -50%)';
-        });
-
-        card.addEventListener('click', function () {
-          const imageInfo = imageText[categoryIndex] && imageText[categoryIndex][i - 1] ? imageText[categoryIndex][i - 1] : { header: "Default Title", description: "Default description" };
-          openGallery(imgSrc, imageInfo.header, imageInfo.description);
-        });
+        // Capture the current value of i
+        (function (i) {
+          card.addEventListener('click', function () {
+            if (imageText[categoryIndex] && imageText[categoryIndex][i - 1]) {
+              const imageInfo = imageText[categoryIndex][i - 1];
+              console.log(imageInfo);
+              openGallery(imgSrc, imageInfo.header, imageInfo.description);
+            } else {
+              openGallery(imgSrc, "Default Title", "Default description");
+            }
+          });
+        })(i);
 
         i++;
       } else {
