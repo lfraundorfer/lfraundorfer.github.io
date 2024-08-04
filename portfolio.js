@@ -19,16 +19,56 @@ document.addEventListener("DOMContentLoaded", function () {
       description: "Lorem ipsum dolor sit amet, Category 4 description..."
     },
   ];
+
   const imageText = [
-    {
-      header: "Image 1 Title",
-      description: "Lorem ipsum dolor sit amet, Image 1 description..."
-    },
-    {
-      header: "Image 2 Title",
-      description: "Lorem ipsum dolor sit amet, Image 2 description..."
-    },
-    // Add more image descriptions as needed
+    [
+      {
+        header: "Cat 1 Image 1 Title",
+        description: "Lorem ipsum dolor sit amet, Cat 1 Image 1 description..."
+      }
+    ],
+    [
+      {
+        header: "Cat 2 Image 1 Title",
+        description: "Lorem ipsum dolor sit amet, Cat 2 Image 1 description..."
+      },
+      {
+        header: "Cat 2 Image 2 Title",
+        description: "Lorem ipsum dolor sit amet, Cat 2 Image 2 description..."
+      }
+    ],
+    [
+      {
+        header: "Cat 3 Image 1 Title",
+        description: "Lorem ipsum dolor sit amet, Cat 3 Image 1 description..."
+      },
+      {
+        header: "Cat 3 Image 2 Title",
+        description: "Lorem ipsum dolor sit amet, Cat 3 Image 2 description..."
+      },
+      {
+        header: "Cat 3 Image 3 Title",
+        description: "Lorem ipsum dolor sit amet, Cat 3 Image 3 description..."
+      }
+    ],
+    [
+      {
+        header: "Cat 4 Image 1 Title",
+        description: "Lorem ipsum dolor sit amet, Cat 4 Image 1 description..."
+      },
+      {
+        header: "Cat 4 Image 2 Title",
+        description: "Lorem ipsum dolor sit amet, Cat 4 Image 2 description..."
+      },
+      {
+        header: "Cat 4 Image 3 Title",
+        description: "Lorem ipsum dolor sit amet, Cat 4 Image 3 description..."
+      },
+      {
+        header: "Cat 4 Image 4 Title",
+        description: "Lorem ipsum dolor sit amet, Cat 4 Image 4 description..."
+      }
+    ]
   ];
 
   async function imageExists(url) {
@@ -73,7 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         card.addEventListener('click', function () {
-          openGallery(imgSrc, imageText[i - 1].header, imageText[i - 1].description);
+          const imageInfo = imageText[categoryIndex] && imageText[categoryIndex][i - 1] ? imageText[categoryIndex][i - 1] : { header: "Default Title", description: "Default description" };
+          openGallery(imgSrc, imageInfo.header, imageInfo.description);
         });
 
         i++;
