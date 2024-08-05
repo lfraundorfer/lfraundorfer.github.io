@@ -87,7 +87,7 @@ body {
 .animated-image.show {
   opacity: 1;
 }
-
+ 
 .text-overlay {
   position: absolute;
   left: 20px;
