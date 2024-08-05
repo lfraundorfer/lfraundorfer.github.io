@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const navbar = document.getElementById("menu");
   const portfolioSection = document.querySelector("#portfolio");
   const nextButton = document.querySelector(".next-btn");
   const prevButton = document.querySelector(".prev-btn");
@@ -8,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const quoteSection = document.querySelector(".quote-slider");
   const stats = document.querySelectorAll("#stats .stats-copy");
   const statsSection = document.querySelector("#stats");
-  const menuLinks = document.querySelectorAll('#menu a');
   const sections = document.querySelectorAll('#partners, #portfolio, #usp, #stats, #why-us, #contact-form');
   const textElement = document.getElementById('animated-text');
   const imageElements = document.querySelectorAll('.animated-image');
@@ -33,14 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
   let slideNumber = 0;
   let playSlider;
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 0) {
-      navbar.classList.add("sticky");
-    } else {
-      navbar.classList.remove("sticky");
-    }
-  });
 
   const handleIntersection = (entries, observer, callback) => {
     entries.forEach((entry) => {
@@ -145,61 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.title = titles[currentTitleIndex];
     currentTitleIndex = (currentTitleIndex + 1) % titles.length;
   }, 1500);
-
-  const removeActiveClasses = () => {
-    menuLinks.forEach(link => link.classList.remove('active'));
-  };
-
-  const setActiveLink = (id) => {
-    removeActiveClasses();
-    const activeLink = document.querySelector(`#menu a[href="#${id}"]`);
-    if (activeLink) {
-      activeLink.classList.add('active');
-    }
-  };
-
-  menuLinks.forEach(link => {
-    link.addEventListener('click', function () {
-      const sectionId = this.getAttribute('href').substring(1);
-      setActiveLink(sectionId);
-    });
-  });
-
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.5
-  };
-
-  const findClosestSection = () => {
-    let closestSection = sections[0];
-    let closestDistance = Math.abs(sections[0].getBoundingClientRect().top);
-
-    sections.forEach(section => {
-      const distance = Math.abs(section.getBoundingClientRect().top);
-      if (distance < closestDistance) {
-        closestSection = section;
-        closestDistance = distance;
-      }
-    });
-
-    return closestSection;
-  };
-
-  const observerCallback = (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const closestSection = findClosestSection();
-        setActiveLink(closestSection.id);
-      }
-    });
-  };
-
-  const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-  sections.forEach(section => {
-    observer.observe(section);
-  });
 
   const showImage = (index) => {
     imageElements.forEach((img, i) => {
