@@ -15,6 +15,38 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
 
+            // Check if we are on the index.html page
+            const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+
+            // Update navigation links
+            const updateLinks = () => {
+                const menuLinks = document.querySelectorAll('#menu a');
+                menuLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        if (isIndexPage) {
+                            link.setAttribute('href', href);
+                        } else {
+                            link.setAttribute('href', `./index.html${href}`);
+                        }
+                    }
+                });
+
+                const footerLinks = document.querySelectorAll('.footer-links a');
+                footerLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        if (isIndexPage) {
+                            link.setAttribute('href', href);
+                        } else {
+                            link.setAttribute('href', `./index.html${href}`);
+                        }
+                    }
+                });
+            };
+
+            updateLinks();
+
             // Activate IntersectionObserver for menu items
             const sections = document.querySelectorAll('main section');
             const menuLinks = document.querySelectorAll('#menu a');
