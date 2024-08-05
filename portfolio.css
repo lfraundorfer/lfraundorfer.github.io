@@ -163,9 +163,16 @@ main {
 }
 
 #gallery img {
-  width: 200%;
-  height: 200%;
+  /* width: 200%;
+  height: 200%; */
+  max-width: 80%;
+  max-height: 80%;
   object-fit: contain;
+  transition: opacity 0.5s ease-in-out; /* Transition animation */
+}
+
+#gallery img.hidden {
+  opacity: 0;
 }
 
 #gallery .close {
@@ -224,4 +231,13 @@ main {
 
 .category-text p {
   margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  #gallery img {
+    max-width: 100%;
+    max-height: none; /* Remove max-height constraint */
+    width: 100%; /* Ensure the image covers the entire width */
+    height: auto; /* Maintain aspect ratio */
+  }
 }

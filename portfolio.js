@@ -118,24 +118,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  let isFirstOpen = true;
+
   function openGallery(src, categoryIndex, imageIndex) {
     const gallery = document.getElementById('gallery');
     const galleryImg = document.getElementById('galleryImg');
     const galleryTitle = document.getElementById('galleryTitle');
     const galleryDescription = document.getElementById('galleryDescription');
-
-    const imageInfo = imageText[categoryIndex][imageIndex];
-    galleryImg.src = src;
-    galleryTitle.textContent = imageInfo.header;
-    galleryDescription.textContent = imageInfo.description;
-
+  
+    if (!isFirstOpen) {
+      // Hide the image before changing source
+      galleryImg.classList.add('hidden');
+  
+      setTimeout(() => {
+        const imageInfo = imageText[categoryIndex][imageIndex];
+        galleryImg.src = src;
+        galleryTitle.textContent = imageInfo.header;
+        galleryDescription.textContent = imageInfo.description;
+  
+        // Show the image after source is changed
+        galleryImg.classList.remove('hidden');
+      }, 500); // Match the duration of the transition animation
+    } else {
+      const imageInfo = imageText[categoryIndex][imageIndex];
+      galleryImg.src = src;
+      galleryTitle.textContent = imageInfo.header;
+      galleryDescription.textContent = imageInfo.description;
+      galleryImg.classList.remove('hidden');
+      isFirstOpen = false;
+    }
+  
     gallery.style.display = 'flex';
   }
-
+  
+  // Reset isFirstOpen when the gallery is closed
   function closeGallery() {
     const gallery = document.getElementById('gallery');
     gallery.style.display = 'none';
+    isFirstOpen = true;
   }
+  
 
   function showNextImage() {
     currentImageIndex = (currentImageIndex + 1) % imageText[currentCategoryIndex].length;
