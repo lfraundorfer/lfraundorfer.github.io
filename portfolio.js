@@ -71,6 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ]
   ];
 
+  let currentCategoryIndex = 0;
+  let currentImageIndex = 0;
+
   async function imageExists(url) {
     try {
       const response = await fetch(url, { method: 'HEAD' });
@@ -101,16 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
         card.appendChild(cardHover);
         output.appendChild(card);
 
-        // Capture the current value of i
         (function (i) {
           card.addEventListener('click', function () {
-            if (imageText[categoryIndex] && imageText[categoryIndex][i - 1]) {
-              const imageInfo = imageText[categoryIndex][i - 1];
-              console.log(imageInfo);
-              openGallery(imgSrc, imageInfo.header, imageInfo.description);
-            } else {
-              openGallery(imgSrc, "Default Title", "Default description");
-            }
+            currentImageIndex = i - 1;
+            openGallery(imgSrc, categoryIndex, currentImageIndex);
           });
         })(i);
 
@@ -121,16 +118,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function openGallery(src, title, description) {
+  function openGallery(src, categoryIndex, imageIndex) {
     const gallery = document.getElementById('gallery');
     const galleryImg = document.getElementById('galleryImg');
     const galleryTitle = document.getElementById('galleryTitle');
     const galleryDescription = document.getElementById('galleryDescription');
-    
+
+    const imageInfo = imageText[categoryIndex][imageIndex];
     galleryImg.src = src;
-    galleryTitle.textContent = title;
-    galleryDescription.textContent = description;
-    
+    galleryTitle.textContent = imageInfo.header;
+    galleryDescription.textContent = imageInfo.description;
+
     gallery.style.display = 'flex';
   }
 
@@ -139,37 +137,78 @@ document.addEventListener("DOMContentLoaded", function () {
     gallery.style.display = 'none';
   }
 
+  function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % imageText[currentCategoryIndex].length;
+    const imgSrc = `${basePath}cat${currentCategoryIndex + 1}-${currentImageIndex + 1}.jpg`;
+    openGallery(imgSrc, currentCategoryIndex, currentImageIndex);
+  }
+
+  function showPrevImage() {
+    currentImageIndex = (currentImageIndex - 1 + imageText[currentCategoryIndex].length) % imageText[currentCategoryIndex].length;
+    const imgSrc = `${basePath}cat${currentCategoryIndex + 1}-${currentImageIndex + 1}.jpg`;
+    openGallery(imgSrc, currentCategoryIndex, currentImageIndex);
+  }
+
   document.querySelector('.close').addEventListener('click', closeGallery);
+  document.querySelector('.gallery-nav.left').addEventListener('click', showPrevImage);
+  document.querySelector('.gallery-nav.right').addEventListener('click', showNextImage);
+
   document.getElementById('gallery').addEventListener('click', function (event) {
-    if (event.target === event.currentTarget) {
+    if (event.target === event.currentTarget || event.target.classList.contains('close')) {
       closeGallery();
     }
   });
 
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      closeGallery();
+    } else if (event.key === 'ArrowRight') {
+      showNextImage();
+    } else if (event.key === 'ArrowLeft') {
+      showPrevImage();
+    }
+  });
+
+  // Swipe functionality
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  function handleGesture() {
+    if (touchEndX < touchStartX) {
+      showNextImage();
+    }
+    if (touchEndX > touchStartX) {
+      showPrevImage();
+    }
+  }
+
+  document.getElementById('gallery').addEventListener('touchstart', function (event) {
+    touchStartX = event.changedTouches[0].screenX;
+  });
+
+  document.getElementById('gallery').addEventListener('touchend', function (event) {
+    touchEndX = event.changedTouches[0].screenX;
+    handleGesture();
+  });
+
   categories.forEach((category, index) => {
     category.addEventListener("click", function () {
-      // Remove active class from all categories
       categories.forEach((cat) => cat.classList.remove("active"));
-
-      // Add active class to the clicked category
       this.classList.add("active");
+      currentCategoryIndex = index;
 
-      // Load category text
       document.getElementById('category-text').innerHTML = `
         <h2>${categoryText[index].header}</h2>
         <p>${categoryText[index].description}</p>
       `;
-
-      // Load images for the clicked category
       loadImages(index);
     });
   });
 
-  // Initial setup to select the first category
   categories[0].classList.add("active");
   document.getElementById('category-text').innerHTML = `
     <h2>${categoryText[0].header}</h2>
     <p>${categoryText[0].description}</p>
   `;
-  loadImages(0); // Load images for the first category initially
+  loadImages(0);
 });
