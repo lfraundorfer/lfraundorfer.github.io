@@ -2,15 +2,17 @@
   --main-bg-color: rgba(0, 0, 0, 0.1);
   --secondary-bg-color: #9fc7aa;
   --secondary-bg-color-rgba: rgba(159, 199, 170, 0.5);
-  --active-color: #C79FBC;
+  --active-color: #c79fbc;
   --main-font-color: #2e3e56;
   --secondary-font-color: #444;
   font-family: Inter, "Bebas Neue", sans-serif;
-  font-feature-settings: 'liga' 1, 'calt' 1;
+  font-feature-settings: "liga" 1, "calt" 1;
 }
 
 @supports (font-variation-settings: normal) {
-  :root { font-family: InterVariable, sans-serif; }
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
 }
 
 * {
@@ -41,9 +43,9 @@ body {
 }
 
 body main {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  gap:2vh;
+  gap: 2vh;
 }
 
 .hero {
@@ -93,7 +95,7 @@ body main {
 .animated-image.show {
   opacity: 1;
 }
- 
+
 .text-overlay {
   position: absolute;
   left: 20px;
@@ -112,7 +114,7 @@ body main {
   white-space: nowrap;
   overflow: hidden;
   font-size: 3rem;
-  color: var(--secondary-bg-color)
+  color: var(--secondary-bg-color);
 }
 
 @keyframes card-zoom {
@@ -165,7 +167,7 @@ body main {
 
 .wrapper .logos {
   display: flex;
-  flex:1;
+  flex: 1;
   justify-content: space-around;
   align-items: center;
   gap: 1rem;
@@ -179,7 +181,6 @@ body main {
   border-radius: 2rem;
   border: 2px solid var(--secondary-bg-color);
 }
-
 
 #portfolio {
   display: flex;
@@ -198,7 +199,7 @@ body main {
 .portfolio-wrapper {
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
@@ -206,8 +207,8 @@ body main {
 .portfolio-pic {
   border: 2px solid var(--secondary-bg-color);
   border-radius: 2.5rem;
-  width:25vw;
-  height:25vw;
+  width: 25vw;
+  height: 25vw;
 }
 
 .portfolio-pic img {
@@ -270,6 +271,10 @@ body main {
   opacity: 1;
 }
 
+.quote-author {
+  font-weight: bold;
+}
+
 .navigation {
   display: flex;
   align-items: center;
@@ -284,7 +289,8 @@ body main {
   background: var(--active-color);
 }
 
-.chevron-left, .chevron-right {
+.chevron-left,
+.chevron-right {
   z-index: 999;
   width: 1.75rem;
   height: 1.75rem;
@@ -355,9 +361,34 @@ body main {
 }
 
 .usp-section {
-  background-color: var(--secondary-bg-color);
+  /* background-color: var(--secondary-bg-color); */
   border-radius: 5%;
   text-align: center;
+  /* border-color: var(--secondary-bg-color); */
+  border: solid 2px var(--secondary-bg-color-rgba);
+  /* box-shadow: var(--secondary-bg-color-rgba); */
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
+}
+
+.usp-text {
+  padding: 0 1rem 1rem;
+}
+
+.usp-text h1 {
+  border-bottom: black 1px solid;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
+
+.usp-text p {
+  padding-top: 0.5rem;
+}
+
+.usp-logo img {
+  filter: brightness(0) saturate(100%) invert(92%) sepia(12%) saturate(581%)
+    hue-rotate(79deg) brightness(82%) contrast(89%);
+  padding-top: 0.25rem;
 }
 
 #stats {
@@ -385,19 +416,31 @@ body main {
 #stats .stats-copy {
   opacity: 0;
   flex: 1 1 20%;
-  background-color: var(--secondary-bg-color);
+  /* background-color: var(--secondary-bg-color); */
   transform: translateY(20px);
   border: 1px solid beige;
   text-align: center;
   border-radius: 1rem;
+  border: solid 2px var(--secondary-bg-color-rgba);
+  /* box-shadow: var(--secondary-bg-color-rgba); */
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
 }
 
 #stats .stats-copy.animate {
   animation: fadeIn 1s forwards;
+  padding: 1rem 1rem 1rem;
 }
 
 #stats .stats-copy h1 {
   color: var(--main-font-color);
+  border-bottom: black 1px solid;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
+
+#stats .stats-copy p {
+  padding-top: 0.5rem;
 }
 
 .contact-us {
@@ -420,11 +463,9 @@ body main {
     /* width: 90vw; */
   }
 
- 
-
   .portfolio-pic {
-    width:75vw;
-    height:75vw;
+    width: 75vw;
+    height: 75vw;
   }
 
   #usp {
@@ -440,7 +481,7 @@ body main {
   #stats {
     flex-direction: column;
     align-items: center;
-    gap:0;
+    gap: 0;
   }
 
   #stats .stats-copy {
