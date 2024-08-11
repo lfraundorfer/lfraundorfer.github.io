@@ -1,0 +1,183 @@
+:root {
+  --main-bg-color: rgba(0, 0, 0, 0.1);
+  --secondary-bg-color: #9fc7aa;
+  --secondary-bg-color-rgba: rgba(159, 199, 170, 0.5);
+  --active-color: #c79fbc;
+  --main-font-color: #2e3e56;
+  --secondary-font-color: #444;
+  font-family: Inter, "Bebas Neue", sans-serif;
+  font-feature-settings: "liga" 1, "calt" 1;
+  --color-violet: #5e29f9;
+  --border-radius: max(5px, 0.3vw);
+  --color-light-grey: #f2f2f7;
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 2px solid red;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-logo img {
+  width: 120px;
+  height: 75px;
+}
+
+#hero {
+  border: 2px solid red;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 90vh;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#hero .hero-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#hero .hero-center {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-center .scroll {
+  position: absolute;
+  left: 0;
+}
+#hero .headline {
+  display: flex;
+  justify-content: center;
+  max-width: 12ch;
+}
+
+#hero .subline {
+  display: flex;
+  justify-content: center;
+  max-width: 30ch;
+  text-align: center;
+}
+
+#hero .fatline {
+  font-size: 20vh;
+  font-weight: 400;
+  flex-grow: 1;
+  align-self: stretch;
+  text-align: center;
+}
+
+#numbers-book {
+  display: flex;
+  height: 90vh;
+  gap: 2vw;
+}
+
+#numbers-book .percentages {
+  /* flex-grow: 1; */
+  border: 2px solid red;
+}
+
+#numbers-book .booking {
+  flex-grow: 2;
+  border: 2px solid red;
+}
+
+.percentages {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.percentage-boxes .percentage {
+  display: flex;
+}
+
+.percentages .percentage-text {
+  flex-grow: 1;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.percentage-text .percentages-header {
+  /* width: 20%; */ /*not needed because of <br>, but maybe it's better this way?*/
+  font-size: 5vh;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.percentages-header strong {
+  position: relative; /* Add this to position the pseudo-element relative to the strong tag */
+  color: white;
+}
+
+.percentages-header strong::before {
+  position: absolute;
+  top: -5%;
+  left: -2.5%;
+  width: 105%;
+  height: 105%;
+  background: var(--color-violet);
+  border-radius: var(--border-radius);
+  content: "";
+  z-index: -1;
+}
+
+.percentage-text .percentages-subline {
+  width: 60%;
+}
+
+.percentages .percentage-container {
+  flex-grow: 2;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  justify-content: center;
+}
+
+.percentage-container .percentage-boxes {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.percentage-boxes .percentage {
+  height: 30%;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-light-grey);
+  border-radius: var(--border-radius);
+}
+
+.percentage .percentage-box-value {
+  flex: 1;
+  font-size: 3vh;
+  text-align: center;
+}
+.percentage-box-text {
+  flex: 2;
+}
